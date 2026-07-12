@@ -30,9 +30,32 @@ const notoSansSC = Noto_Sans_SC({
   display: "swap",
 });
 
+const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://celestial.app'
+
 export const metadata: Metadata = {
   title: "Celestial — Discover Your Cosmic Blueprint",
   description: "Western astrology natal chart, daily transits, and synastry",
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+  },
+  manifest: '/site.webmanifest',
+  openGraph: {
+    title: 'Celestial — Discover Your Cosmic Blueprint',
+    description: 'Western astrology natal chart, daily transits, and synastry',
+    url: appUrl,
+    siteName: 'Celestial',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Celestial — Discover Your Cosmic Blueprint',
+    description: 'Western astrology natal chart, daily transits, and synastry',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

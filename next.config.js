@@ -4,6 +4,36 @@ const nextConfig = {
   images: {
     domains: [],
   },
-};
+  async headers() {
+    const securityHeaders = [
+      {
+        key: 'X-Frame-Options',
+        value: 'SAMEORIGIN',
+      },
+      {
+        key: 'X-Content-Type-Options',
+        value: 'nosniff',
+      },
+      {
+        key: 'Referrer-Policy',
+        value: 'strict-origin-when-cross-origin',
+      },
+      {
+        key: 'Permissions-Policy',
+        value: 'camera=(), microphone=(), geolocation=()',
+      },
+      {
+        key: 'X-DNS-Prefetch-Control',
+        value: 'on',
+      },
+    ]
+    return [
+      {
+        source: '/(.*)',
+        headers: securityHeaders,
+      },
+    ]
+  },
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
