@@ -46,19 +46,21 @@ export function useAuth() {
   }, [])
 
   const signInWithGoogle = useCallback(async () => {
-    if (!supabase) return
-    await supabase.auth.signInWithOAuth({
+    if (!supabase) return { error: new Error('Supabase not configured') }
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: { redirectTo: `${window.location.origin}/auth/callback` },
     })
+    return { error }
   }, [supabase])
 
   const signInWithGithub = useCallback(async () => {
-    if (!supabase) return
-    await supabase.auth.signInWithOAuth({
+    if (!supabase) return { error: new Error('Supabase not configured') }
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: { redirectTo: `${window.location.origin}/auth/callback` },
     })
+    return { error }
   }, [supabase])
 
   const signInWithEmail = useCallback(async (email: string) => {

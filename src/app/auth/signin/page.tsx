@@ -56,22 +56,29 @@ export default function SignInPage() {
   const [githubLoading, setGithubLoading] = useState(false)
   const [emailLoading, setEmailLoading] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleGoogleSignIn = async () => {
     setGoogleLoading(true)
+    setError(null)
     try {
-      await signInWithGoogle()
-    } catch {
+      const { error } = await signInWithGoogle()
+      if (error) throw error
+    } catch (err) {
       setGoogleLoading(false)
+      setError(err instanceof Error ? err.message : 'Sign in failed. Please try again.')
     }
   }
 
   const handleGithubSignIn = async () => {
     setGithubLoading(true)
+    setError(null)
     try {
-      await signInWithGithub()
-    } catch {
+      const { error } = await signInWithGithub()
+      if (error) throw error
+    } catch (err) {
       setGithubLoading(false)
+      setError(err instanceof Error ? err.message : 'Sign in failed. Please try again.')
     }
   }
 
@@ -103,6 +110,13 @@ export default function SignInPage() {
         <p className="mb-8 text-center text-sm text-[#a8a6a3]">
           {t('auth.signinToUnlock')}
         </p>
+
+        {/* Error Message */}
+        {error && (
+          <div className="mb-5 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+            {error}
+          </div>
+        )}
 
         {/* OAuth Buttons */}
         <div className="space-y-3">
