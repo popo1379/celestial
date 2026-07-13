@@ -10,6 +10,11 @@ import { searchCities } from '@/lib/astrology/coordinates'
 import { calculateFullNatalChart, calculateDailyFortune, getSignElement, type ChartResult, type DailyFortuneResult } from '@/lib/astrology/engine'
 import type { BirthInfo } from '@/lib/astrology/engine'
 import type { CityCoordinate } from '@/lib/astrology/coordinates'
+import FeaturesSection from '@/components/home/FeaturesSection'
+import AIHighlightSection from '@/components/home/AIHighlightSection'
+import TestimonialsSection from '@/components/home/TestimonialsSection'
+import HowItWorksSection from '@/components/home/HowItWorksSection'
+import FinalCTASection from '@/components/home/FinalCTASection'
 
 const zodiacSymbols: Record<string, string> = {
   Aries: '♈', Taurus: '♉', Gemini: '♊', Cancer: '♋',
@@ -354,6 +359,14 @@ function UnauthenticatedView() {
           <BirthInfoForm />
         </div>
       </motion.div>
+
+      <div className="w-full max-w-7xl mx-auto mt-20 sm:mt-32">
+        <FeaturesSection />
+        <AIHighlightSection />
+        <HowItWorksSection />
+        <TestimonialsSection />
+        <FinalCTASection />
+      </div>
     </div>
   )
 }

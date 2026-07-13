@@ -3,6 +3,7 @@ import { Playfair_Display, Inter, Noto_Serif_SC, Noto_Sans_SC } from "next/font/
 import "./globals.css";
 import DesktopNav from "@/components/layout/DesktopNav";
 import MobileTabBar from "@/components/layout/MobileTabBar";
+import Footer from "@/components/layout/Footer";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -71,6 +72,7 @@ export default function RootLayout({
         <main className="pt-0 md:pt-16 pb-[100px] md:pb-0">
           {children}
         </main>
+        <Footer />
         <MobileTabBar />
       </body>
     </html>
