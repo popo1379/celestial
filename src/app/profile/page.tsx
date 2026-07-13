@@ -44,7 +44,7 @@ const zodiacSymbols: Record<string, string> = {
 export default function ProfilePage() {
   const router = useRouter()
   const { t, locale } = useTranslation()
-  const { profiles, save, remove, loaded } = useLocalProfile()
+  const { profiles, save, remove, loaded, syncing } = useLocalProfile()
   const setBirthInfo = useGuestChartStore((s) => s.setBirthInfo)
   const [showForm, setShowForm] = useState(false)
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null)
@@ -400,8 +400,9 @@ export default function ProfilePage() {
         </AnimatePresence>
 
         {!loaded ? (
-          <div className="flex items-center justify-center py-20">
+          <div className="flex flex-col items-center justify-center py-20">
             <div className="h-6 w-6 animate-spin rounded-full border-2 border-accent-gold border-t-transparent" />
+            <p className="mt-3 text-xs text-text-tertiary">{syncing ? t('profile.syncing') : t('common.loading')}</p>
           </div>
         ) : sortedProfiles.length === 0 ? (
           <motion.div

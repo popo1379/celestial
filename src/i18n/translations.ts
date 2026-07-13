@@ -224,6 +224,7 @@ export const translations: Record<Locale, Dict> = {
     'profile.unknownLocation': 'Unknown location',
     'profile.unknownPlace': 'Unknown place',
     'profile.sunSign': 'Sun',
+    'profile.syncing': 'Syncing with cloud...',
 
     // Auth
     'auth.welcome': 'Welcome',
@@ -605,6 +606,7 @@ export const translations: Record<Locale, Dict> = {
     'profile.unknownLocation': '地点未知',
     'profile.unknownPlace': '地点未知',
     'profile.sunSign': '太阳',
+    'profile.syncing': '正在同步云端...',
 
     // 认证
     'auth.welcome': '欢迎',
