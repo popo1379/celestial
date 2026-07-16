@@ -17,6 +17,7 @@ export default function DesktopNav() {
     { href: '/chart', label: t('nav.chart') },
     { href: '/transit', label: t('nav.transit') },
     { href: '/synastry', label: t('nav.synastry') },
+    { href: '/blog', label: t('nav.blog') },
     { href: '/profile', label: t('nav.profile') },
   ]
 

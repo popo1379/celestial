@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import { listPosts } from '@/lib/blog'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://celestial.app').replace(/\/+$/, '')
@@ -17,12 +18,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/profile', priority: 0.5, changeFrequency: 'weekly' },
     { path: '/ai-chat', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/auth/signin', priority: 0.3, changeFrequency: 'monthly' },
+    { path: '/blog', priority: 0.8, changeFrequency: 'weekly' },
   ]
 
-  return routes.map((route) => ({
+  const staticEntries: MetadataRoute.Sitemap = routes.map((route) => ({
     url: `${baseUrl}${route.path}`,
     lastModified: new Date(),
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }))
+
+  // Blog post entries (English canonical URLs; zh versions are referenced via hreflang alternates)
+  const blogPosts = listPosts('en')
+  const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.updated || post.date),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }))
+
+  return [...staticEntries, ...blogEntries]
 }

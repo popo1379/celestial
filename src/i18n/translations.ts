@@ -15,6 +15,7 @@ export const translations: Record<Locale, Dict> = {
     'nav.profile': 'Profile',
     'nav.signin': 'Sign In',
     'nav.signout': 'Sign Out',
+    'nav.blog': 'Blog',
 
     // Common
     'common.loading': 'Loading...',
@@ -400,6 +401,14 @@ export const translations: Record<Locale, Dict> = {
     'footer.allRights': 'All rights reserved.',
     'footer.disclaimer': 'Astrology for entertainment purposes only.',
 
+    // Blog
+    'blog.eyebrow': 'Celestial Journal',
+    'blog.title': 'Astrology Guides & Deep Dives',
+    'blog.subtitle': 'Beginner-friendly explainers on natal charts, transits, synastry, and AI-powered interpretation. Learn how to read your chart — one placement at a time.',
+    'blog.allCategories': 'All',
+    'blog.minRead': 'min read',
+    'blog.noPosts': 'No posts in this category yet.',
+
     // Features section
     'features.title': 'Everything You Need to Explore the Stars',
     'features.subtitle': 'From precise natal charts to AI-powered insights, Celestial gives you the tools to understand your cosmic blueprint.',
@@ -529,6 +538,7 @@ export const translations: Record<Locale, Dict> = {
     'nav.profile': '档案',
     'nav.signin': '登录',
     'nav.signout': '退出',
+    'nav.blog': '博客',
 
     // 通用
     'common.loading': '加载中...',
@@ -913,6 +923,14 @@ export const translations: Record<Locale, Dict> = {
     'footer.blog': '博客',
     'footer.allRights': '保留所有权利。',
     'footer.disclaimer': '占星仅供娱乐参考。',
+
+    // 博客
+    'blog.eyebrow': 'Celestial 星象志',
+    'blog.title': '占星指南与深度解读',
+    'blog.subtitle': '面向新手的本命盘、行运、合盘与 AI 占星解读指南。一步步学会读懂你的星盘——一次一个落位。',
+    'blog.allCategories': '全部',
+    'blog.minRead': '分钟',
+    'blog.noPosts': '此分类暂无文章。',
 
     // 功能亮点
     'features.title': '探索星辰的一切工具',

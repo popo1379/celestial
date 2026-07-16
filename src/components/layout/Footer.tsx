@@ -108,7 +108,9 @@ export default function Footer() {
                 <span className="text-sm text-[#3a3a45] cursor-not-allowed">{t('footer.faq')}</span>
               </li>
               <li>
-                <span className="text-sm text-[#3a3a45] cursor-not-allowed">{t('footer.blog')}</span>
+                <Link href="/blog" className="text-sm text-[#6a6865] transition-colors hover:text-[#e8e6e3]">
+                  {t('footer.blog')}
+                </Link>
               </li>
             </ul>
           </div>
