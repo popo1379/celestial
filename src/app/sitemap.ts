@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://celestial.app'
+  const baseUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://celestial.app').replace(/\/+$/, '')
 
   const routes: { path: string; priority: number; changeFrequency: 'daily' | 'weekly' | 'monthly' }[] = [
     { path: '', priority: 1, changeFrequency: 'weekly' },

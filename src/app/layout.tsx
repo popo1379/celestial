@@ -32,7 +32,7 @@ const notoSansSC = Noto_Sans_SC({
   display: "swap",
 });
 
-const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://celestial.app'
+const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://celestial.app').replace(/\/+$/, '')
 
 // Search engine verification codes (set via Vercel env vars)
 const googleVerification = process.env.GOOGLE_SITE_VERIFICATION || ''
