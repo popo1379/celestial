@@ -4,6 +4,7 @@ import "./globals.css";
 import DesktopNav from "@/components/layout/DesktopNav";
 import MobileTabBar from "@/components/layout/MobileTabBar";
 import Footer from "@/components/layout/Footer";
+import CosmicBackground from "@/components/layout/CosmicBackground";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -129,7 +130,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
-        <div className="starfield" aria-hidden="true" />
+        <CosmicBackground />
         <DesktopNav />
         <main className="pt-0 md:pt-16 pb-[100px] md:pb-0">
           {children}
