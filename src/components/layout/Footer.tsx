@@ -31,7 +31,7 @@ export default function Footer() {
                 className="font-serif text-lg font-bold tracking-wide text-[#e8e6e3]"
                 style={{ fontVariant: 'small-caps' }}
               >
-                Celestial
+                Horoscope SERO
               </span>
             </Link>
             <p className="mt-4 text-xs leading-relaxed text-[#6a6865]">
@@ -138,7 +138,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-[#1e1e2a] pt-8 sm:flex-row">
           <p className="text-xs text-[#5a5a65]">
-            © {new Date().getFullYear()} Celestial. {t('footer.allRights')}
+            © {new Date().getFullYear()} Horoscope SERO. {t('footer.allRights')}
           </p>
           <p className="text-xs text-[#5a5a65]">
             {t('footer.disclaimer')}

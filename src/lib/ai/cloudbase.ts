@@ -84,7 +84,7 @@ function buildSystemPrompt(context: AIContext): string {
   if (context.type === 'natal' && context.chartData) {
     return buildNatalSystemPrompt(context.chartData)
   }
-  return 'You are Celestial AI, an expert Western astrology interpreter. Provide helpful and insightful guidance.'
+  return 'You are Horoscope SERO AI, an expert Western astrology interpreter. Provide helpful and insightful guidance.'
 }
 
 /**

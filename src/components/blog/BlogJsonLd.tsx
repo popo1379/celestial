@@ -25,7 +25,7 @@ export default function BlogJsonLd({ post, appUrl }: Props) {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Celestial',
+      name: 'Horoscope SERO',
       logo: {
         '@type': 'ImageObject',
         url: `${appUrl}/favicon.svg`,

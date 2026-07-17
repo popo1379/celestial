@@ -21,7 +21,7 @@ export function AIChatMessage({ message }: { message: ChatMessage }) {
           <div className="mb-1 flex items-center gap-1.5">
             <span className="text-[#c9a96e]">✦</span>
             <span className="text-[10px] font-medium uppercase tracking-wider text-[#6a6865]">
-              Celestial AI
+              Horoscope SERO AI
             </span>
           </div>
         )}

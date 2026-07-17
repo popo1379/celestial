@@ -336,7 +336,7 @@ function UnauthenticatedView() {
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[#e8e6e3]"
           style={{ fontFamily: 'var(--font-playfair)' }}
         >
-          Celestial
+          Horoscope SERO
         </h1>
         <div className="mt-2 sm:mt-3 h-px w-16 sm:w-24 bg-gradient-to-r from-transparent via-[#c9a96e]/60 to-transparent mx-auto" />
         <p className="mt-4 sm:mt-5 text-lg sm:text-xl md:text-2xl text-[#c9a96e] font-light tracking-wide">

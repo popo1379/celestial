@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Deploy under subdirectory on the apex domain: opensero.com/horoscope
+  basePath: '/horoscope',
   images: {
     domains: [],
   },
@@ -29,6 +31,7 @@ const nextConfig = {
     ]
     return [
       {
+        // Next.js auto-prefixes with basePath for headers/redirects/rewrites
         source: '/(.*)',
         headers: securityHeaders,
       },

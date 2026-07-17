@@ -31,7 +31,7 @@ export default function DesktopNav() {
             className="font-serif text-lg font-bold tracking-wide text-[#e8e6e3]"
             style={{ fontVariant: 'small-caps' }}
           >
-            Celestial
+            Horoscope SERO
           </span>
         </Link>
 

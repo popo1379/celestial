@@ -32,24 +32,24 @@ const notoSansSC = Noto_Sans_SC({
   display: "swap",
 });
 
-const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://celestial.app').replace(/\/+$/, '')
+const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://opensero.com/horoscope').replace(/\/+$/, '')
 
 // Search engine verification codes (set via Vercel env vars)
 const googleVerification = process.env.GOOGLE_SITE_VERIFICATION || ''
 const bingVerification = process.env.BING_SITE_VERIFICATION || ''
 
 export const metadata: Metadata = {
-  title: "Celestial — Discover Your Cosmic Blueprint",
+  title: "Horoscope SERO — Free Birth Chart & AI Astrology",
   description: "Generate your free natal chart, explore daily transits, compare synastry compatibility, and get AI-powered astrology interpretations. Western astrology with 10 planets, houses, and aspects.",
   keywords: [
     'natal chart', 'birth chart', 'astrology', 'AI astrology',
     'synastry chart', 'relationship compatibility', 'daily horoscope',
     'transit astrology', 'planet positions', 'zodiac signs',
-    'free birth chart', 'astrology calculator',
+    'free birth chart', 'astrology calculator', 'horoscope',
   ],
-  authors: [{ name: 'Celestial' }],
-  creator: 'Celestial',
-  publisher: 'Celestial',
+  authors: [{ name: 'Horoscope SERO' }],
+  creator: 'Horoscope SERO',
+  publisher: 'Horoscope SERO',
   alternates: {
     canonical: appUrl,
   },
@@ -60,16 +60,16 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   openGraph: {
-    title: 'Celestial — Discover Your Cosmic Blueprint',
+    title: 'Horoscope SERO — Free Birth Chart & AI Astrology',
     description: 'Generate your free natal chart, explore daily transits, compare synastry, and get AI-powered astrology interpretations.',
     url: appUrl,
-    siteName: 'Celestial',
+    siteName: 'Horoscope SERO',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Celestial — Discover Your Cosmic Blueprint',
+    title: 'Horoscope SERO — Free Birth Chart & AI Astrology',
     description: 'Free natal chart, daily transits, synastry, and AI astrology interpretations.',
   },
   robots: {
@@ -91,12 +91,11 @@ export const metadata: Metadata = {
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Celestial',
+  name: 'Horoscope SERO',
   url: appUrl,
   logo: `${appUrl}/favicon.svg`,
   description: 'Free online astrology platform offering natal charts, daily transits, synastry, and AI-powered interpretations.',
   sameAs: [
-    'https://twitter.com/celestial',
     'https://github.com/popo1379/celestial',
   ],
 };
@@ -104,7 +103,7 @@ const organizationSchema = {
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Celestial',
+  name: 'Horoscope SERO',
   url: appUrl,
   description: 'Free natal chart, daily transits, synastry, and AI astrology interpretations.',
   potentialAction: {

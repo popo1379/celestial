@@ -46,7 +46,7 @@ export async function exportChart(
     ctx.fillStyle = '#a8a6a3'
     ctx.font = '12px "Inter", sans-serif'
     ctx.fillText(
-      'Celestial — Western Astrology',
+      'Horoscope SERO — Western Astrology',
       exportCanvas.width / 2,
       targetSize + 145
     )
@@ -63,7 +63,7 @@ export async function exportChart(
     ctx.fillStyle = 'rgba(201, 169, 110, 0.15)'
     ctx.font = 'bold 48px "Playfair Display", serif'
     ctx.textAlign = 'right'
-    ctx.fillText('Celestial', exportCanvas.width - 20, exportCanvas.height - 20)
+    ctx.fillText('Horoscope SERO', exportCanvas.width - 20, exportCanvas.height - 20)
   }
 
   const mimeType = options.format === 'png' ? 'image/png' : 'image/jpeg'

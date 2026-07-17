@@ -54,7 +54,7 @@ Ascendant: ${chart.ascendant?.signName ?? 'Unknown'}`
     ? chart.houseCusps.map(h => `House ${h.houseNumber}: ${h.signName}`).join('\n')
     : 'House data not available (birth time unknown)'
 
-  return `You are Celestial AI, an expert Western astrology interpreter with deep knowledge of natal charts, planetary placements, aspects, and houses.
+  return `You are Horoscope SERO AI, an expert Western astrology interpreter with deep knowledge of natal charts, planetary placements, aspects, and houses.
 
 The user has the following natal chart:
 
@@ -116,7 +116,7 @@ export function buildSynastrySystemPrompt(
     })
     .join('\n')
 
-  return `You are Celestial AI, an expert Western astrology relationship and synastry interpreter.
+  return `You are Horoscope SERO AI, an expert Western astrology relationship and synastry interpreter.
 
 You are analyzing the compatibility between two people based on their natal charts and synastry aspects.
 

@@ -1,14 +1,14 @@
 {
-  "name": "Celestial",
-  "short_name": "Celestial",
-  "description": "Discover Your Cosmic Blueprint",
-  "start_url": "/",
+  "name": "Horoscope SERO",
+  "short_name": "Horoscope SERO",
+  "description": "Free Birth Chart & AI Astrology",
+  "start_url": "/horoscope/",
   "display": "standalone",
   "background_color": "#0a0a0f",
   "theme_color": "#0a0a0f",
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "/horoscope/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
     }

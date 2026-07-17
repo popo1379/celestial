@@ -1,16 +1,16 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — Celestial',
-  description: 'Learn how Celestial collects, uses, and protects your personal data.',
+  title: 'Privacy Policy — Horoscope SERO',
+  description: 'Learn how Horoscope SERO collects, uses, and protects your personal data.',
   openGraph: {
-    title: 'Privacy Policy — Celestial',
-    description: 'Learn how Celestial collects, uses, and protects your personal data.',
+    title: 'Privacy Policy — Horoscope SERO',
+    description: 'Learn how Horoscope SERO collects, uses, and protects your personal data.',
   },
   twitter: {
     card: 'summary',
-    title: 'Privacy Policy — Celestial',
-    description: 'Learn how Celestial collects, uses, and protects your personal data.',
+    title: 'Privacy Policy — Horoscope SERO',
+    description: 'Learn how Horoscope SERO collects, uses, and protects your personal data.',
   },
   robots: {
     index: true,
@@ -34,7 +34,7 @@ function t(key: string, locale: string): string {
     'privacy.title': 'Privacy Policy',
     'privacy.lastUpdated': 'Last updated:',
     'privacy.intro.title': 'Introduction',
-    'privacy.intro.content': 'Welcome to Celestial. We respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, and safeguard your information when you use our service.\n\nBy using Celestial, you agree to the collection and use of information in accordance with this policy.',
+    'privacy.intro.content': 'Welcome to Horoscope SERO. We respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, and safeguard your information when you use our service.\n\nBy using Horoscope SERO, you agree to the collection and use of information in accordance with this policy.',
     'privacy.infoWeCollect.title': 'Information We Collect',
     'privacy.infoWeCollect.content': 'We collect the following types of information:\n\n• Account Information: When you sign up using Google, GitHub, or email, we collect your email address and a unique user identifier.\n\n• Birth Data: To generate your natal chart, we collect your birth date, time, place (city and coordinates), and timezone.\n\n• Usage Data: We may collect information on how the service is accessed and used, including your device type, browser type, and pages visited.',
     'privacy.howWeUse.title': 'How We Use Your Information',
@@ -46,7 +46,7 @@ function t(key: string, locale: string): string {
     'privacy.yourRights.title': 'Your Rights',
     'privacy.yourRights.content': 'You have the right to:\n\n• Access the personal data we hold about you\n• Request correction of inaccurate data\n• Request deletion of your data and account\n• Object to processing of your personal data\n• Request restriction of processing\n• Data portability\n\nTo exercise these rights, please contact us using the information below.',
     'privacy.contact.title': 'Contact Us',
-    'privacy.contact.content': 'If you have any questions about this Privacy Policy, please contact us through our website or email us at support@celestial.app.',
+    'privacy.contact.content': 'If you have any questions about this Privacy Policy, please contact us through our website or email us at support@Horoscope SERO.app.',
     'privacy.updates.title': 'Updates to This Policy',
     'privacy.updates.content': 'We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.\n\nYou are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.',
   }
@@ -55,7 +55,7 @@ function t(key: string, locale: string): string {
     'privacy.title': '隐私政策',
     'privacy.lastUpdated': '最后更新时间：',
     'privacy.intro.title': '简介',
-    'privacy.intro.content': '欢迎使用 Celestial。我们尊重您的隐私，并致力于保护您的个人数据。本隐私政策解释了我们在您使用我们的服务时如何收集、使用和保护您的信息。\n\n使用 Celestial 即表示您同意根据本政策收集和使用信息。',
+    'privacy.intro.content': '欢迎使用 Horoscope SERO。我们尊重您的隐私，并致力于保护您的个人数据。本隐私政策解释了我们在您使用我们的服务时如何收集、使用和保护您的信息。\n\n使用 Horoscope SERO 即表示您同意根据本政策收集和使用信息。',
     'privacy.infoWeCollect.title': '我们收集的信息',
     'privacy.infoWeCollect.content': '我们收集以下类型的信息：\n\n• 账户信息：当您使用 Google、GitHub 或邮箱注册时，我们会收集您的邮箱地址和唯一用户标识符。\n\n• 出生数据：为了生成您的本命盘，我们会收集您的出生日期、时间、地点（城市和坐标）以及时区。\n\n• 使用数据：我们可能会收集有关服务访问方式和使用情况的信息，包括您的设备类型、浏览器类型和访问的页面。',
     'privacy.howWeUse.title': '我们如何使用您的信息',
@@ -67,7 +67,7 @@ function t(key: string, locale: string): string {
     'privacy.yourRights.title': '您的权利',
     'privacy.yourRights.content': '您有权：\n\n• 访问我们持有的您的个人数据\n• 请求更正不准确的数据\n• 请求删除您的数据和账户\n• 反对处理您的个人数据\n• 请求限制处理\n• 数据可携带权\n\n要行使这些权利，请使用以下信息联系我们。',
     'privacy.contact.title': '联系我们',
-    'privacy.contact.content': '如果您对本隐私政策有任何疑问，请通过我们的网站或发送邮件至 support@celestial.app 联系我们。',
+    'privacy.contact.content': '如果您对本隐私政策有任何疑问，请通过我们的网站或发送邮件至 support@Horoscope SERO.app 联系我们。',
     'privacy.updates.title': '政策更新',
     'privacy.updates.content': '我们可能会不时更新我们的隐私政策。我们会通过在本页面发布新的隐私政策并更新"最后更新"日期来通知您任何更改。\n\n建议您定期查看本隐私政策以了解任何变化。本隐私政策的变化在发布到本页面时生效。',
   }

@@ -3,9 +3,9 @@ import { listPosts } from '@/lib/blog'
 import BlogListClient from '@/components/blog/BlogListClient'
 
 export const metadata: Metadata = {
-  title: 'Blog — Celestial',
+  title: 'Blog — Horoscope SERO',
   description:
-    'Astrology guides on natal charts, transits, synastry, and AI-powered interpretation. Beginner-friendly explainers and deep dives from the Celestial team.',
+    'Astrology guides on natal charts, transits, synastry, and AI-powered interpretation. Beginner-friendly explainers and deep dives from the Horoscope SERO team.',
   alternates: {
     canonical: '/blog',
     languages: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Celestial Blog — Astrology Guides & Deep Dives',
+    title: 'Horoscope SERO Blog — Astrology Guides & Deep Dives',
     description:
       'Learn how to read natal charts, track transits, compare synastry, and use AI for astrology interpretations.',
     url: '/blog',

@@ -35,13 +35,13 @@ export function generateMetadata({ params, searchParams }: PageProps): Metadata 
   }
   if (!post) return {}
 
-  const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://celestial.app').replace(/\/+$/, '')
+  const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://opensero.com/horoscope').replace(/\/+$/, '')
   const url = `${appUrl}/blog/${post.slug}${post.locale === 'zh' ? '?lang=zh' : ''}`
   const altEn = `${appUrl}/blog/${post.slug}`
   const altZh = `${appUrl}/blog/${post.slug}?lang=zh`
 
   return {
-    title: `${post.title} — Celestial`,
+    title: `${post.title} — Horoscope SERO`,
     description: post.description,
     keywords: post.tags,
     alternates: {
@@ -79,7 +79,7 @@ export default function BlogPostPage({ params, searchParams }: PageProps) {
   }
   if (!post) notFound()
 
-  const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://celestial.app').replace(/\/+$/, '')
+  const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://opensero.com/horoscope').replace(/\/+$/, '')
   // Use the post's actual locale for adjacent nav (handles fallback case)
   const { prev, next } = getAdjacentPosts(post.slug, post.locale)
   const isZh = post.locale === 'zh'

@@ -99,7 +99,7 @@ export default function SignInPage() {
         {/* Logo / Brand */}
         <div className="mb-8 text-center">
           <h1 className="font-serif text-2xl tracking-wide text-[#c9a96e]">
-            Celestial
+            Horoscope SERO
           </h1>
         </div>
 

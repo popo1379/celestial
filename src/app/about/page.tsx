@@ -1,16 +1,16 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'About — Celestial',
-  description: 'Learn about Celestial — our story, philosophy, and approach to modern astrology.',
+  title: 'About — Horoscope SERO',
+  description: 'Learn about Horoscope SERO — our story, philosophy, and approach to modern astrology.',
   openGraph: {
-    title: 'About — Celestial',
-    description: 'Learn about Celestial — our story, philosophy, and approach to modern astrology.',
+    title: 'About — Horoscope SERO',
+    description: 'Learn about Horoscope SERO — our story, philosophy, and approach to modern astrology.',
   },
   twitter: {
     card: 'summary',
-    title: 'About — Celestial',
-    description: 'Learn about Celestial — our story, philosophy, and approach to modern astrology.',
+    title: 'About — Horoscope SERO',
+    description: 'Learn about Horoscope SERO — our story, philosophy, and approach to modern astrology.',
   },
   robots: {
     index: true,
@@ -20,10 +20,10 @@ export const metadata: Metadata = {
 
 function t(key: string, locale: string): string {
   const en: Record<string, string> = {
-    'about.title': 'About Celestial',
+    'about.title': 'About Horoscope SERO',
     'about.subtitle': 'Your gateway to understanding the cosmos within and around you.',
     'about.story.title': 'Our Story',
-    'about.story.content': 'Celestial was born from a simple idea: that the ancient wisdom of astrology should be accessible to everyone, beautifully presented, and powered by modern technology.\n\nWe believe that your birth chart is a map of your cosmic potential — a tool for self-reflection, growth, and understanding. Our mission is to help you decode that map with clarity and depth.',
+    'about.story.content': 'Horoscope SERO was born from a simple idea: that the ancient wisdom of astrology should be accessible to everyone, beautifully presented, and powered by modern technology.\n\nWe believe that your birth chart is a map of your cosmic potential — a tool for self-reflection, growth, and understanding. Our mission is to help you decode that map with clarity and depth.',
     'about.philosophy.title': 'Our Philosophy',
     'about.philosophy.content': 'Astrology is not about predestination — it is about potential. The stars do not dictate your fate, but they reveal patterns, energies, and opportunities that you can work with consciously.\n\nWe approach astrology with respect for its traditional roots and a modern, psychological perspective. Our tools are designed to empower you, not to limit you.',
     'about.features.title': 'What We Offer',
@@ -36,16 +36,16 @@ function t(key: string, locale: string): string {
     'about.features.synastry.title': 'Synastry',
     'about.features.synastry.desc': 'Relationship compatibility analysis between two charts',
     'about.tech.title': 'Our Approach',
-    'about.tech.content': 'We use the Whole Sign house system, one of the oldest and most traditional house systems in Western astrology. Our calculations include all 10 major celestial bodies (Sun through Pluto) and the major aspects (conjunction, sextile, square, trine, opposition).\n\nOur AI interpretation feature combines your chart data with advanced language models to provide nuanced, context-aware insights tailored to you.',
+    'about.tech.content': 'We use the Whole Sign house system, one of the oldest and most traditional house systems in Western astrology. Our calculations include all 10 major Horoscope SERO bodies (Sun through Pluto) and the major aspects (conjunction, sextile, square, trine, opposition).\n\nOur AI interpretation feature combines your chart data with advanced language models to provide nuanced, context-aware insights tailored to you.',
     'about.disclaimer.title': 'Disclaimer',
-    'about.disclaimer.content': 'Celestial provides astrological information for entertainment and self-reflection purposes only. It is not a substitute for professional advice. Always consult with qualified professionals for medical, legal, financial, or psychological matters.',
+    'about.disclaimer.content': 'Horoscope SERO provides astrological information for entertainment and self-reflection purposes only. It is not a substitute for professional advice. Always consult with qualified professionals for medical, legal, financial, or psychological matters.',
   }
 
   const zh: Record<string, string> = {
-    'about.title': '关于 Celestial',
+    'about.title': '关于 Horoscope SERO',
     'about.subtitle': '理解你内在和周围宇宙的门户。',
     'about.story.title': '我们的故事',
-    'about.story.content': 'Celestial 诞生于一个简单的想法：占星学这门古老的智慧应该让每个人都能接触到，以精美的方式呈现，并由现代技术驱动。\n\n我们相信，你的出生星盘是你宇宙潜能的地图——一个用于自我反思、成长和理解的工具。我们的使命是帮助你清晰而深入地解读这张地图。',
+    'about.story.content': 'Horoscope SERO 诞生于一个简单的想法：占星学这门古老的智慧应该让每个人都能接触到，以精美的方式呈现，并由现代技术驱动。\n\n我们相信，你的出生星盘是你宇宙潜能的地图——一个用于自我反思、成长和理解的工具。我们的使命是帮助你清晰而深入地解读这张地图。',
     'about.philosophy.title': '我们的理念',
     'about.philosophy.content': '占星学不是关于宿命论——而是关于潜能。星辰并不决定你的命运，但它们揭示了你可以有意识地与之合作的模式、能量和机遇。\n\n我们以尊重传统根源和现代心理学视角的态度来对待占星学。我们的工具旨在赋予你力量，而不是限制你。',
     'about.features.title': '我们提供什么',
@@ -60,7 +60,7 @@ function t(key: string, locale: string): string {
     'about.tech.title': '我们的方法',
     'about.tech.content': '我们使用整宫制（Whole Sign house system），这是西方占星学中最古老和最传统的宫位系统之一。我们的计算包括全部 10 颗主要天体（太阳到冥王星）和主要相位（合相、六分相、四分相、三分相、对分相）。\n\n我们的 AI 解读功能将您的星盘数据与先进的语言模型相结合，为您提供量身定制的、有上下文感知的细致洞察。',
     'about.disclaimer.title': '免责声明',
-    'about.disclaimer.content': 'Celestial 提供的占星信息仅供娱乐和自我反思目的使用。它不能替代专业建议。对于医疗、法律、财务或心理问题，请始终咨询合格的专业人士。',
+    'about.disclaimer.content': 'Horoscope SERO 提供的占星信息仅供娱乐和自我反思目的使用。它不能替代专业建议。对于医疗、法律、财务或心理问题，请始终咨询合格的专业人士。',
   }
 
   const dict = locale === 'zh' ? zh : en
