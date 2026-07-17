@@ -3,6 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
   // Deploy under subdirectory on the apex domain: opensero.com/horoscope
   basePath: '/horoscope',
+  // Expose basePath to client-side fetch calls
+  env: {
+    NEXT_PUBLIC_BASE_PATH: '/horoscope',
+  },
   images: {
     domains: [],
   },

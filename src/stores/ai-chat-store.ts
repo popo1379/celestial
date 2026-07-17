@@ -3,6 +3,8 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
 export interface ChatMessage {
   id: string
   role: 'user' | 'assistant'
@@ -72,7 +74,7 @@ export const useAIChatStore = create<AIChatState>()(
             .filter((m) => !m.error)
             .map((m) => ({ role: m.role, content: m.content }))
 
-          const response = await fetch('/api/ai-chat', {
+          const response = await fetch(`${BASE_PATH}/api/ai-chat`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

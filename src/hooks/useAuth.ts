@@ -3,6 +3,8 @@
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState, useCallback } from 'react'
+
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || ''
 import type { User } from '@supabase/supabase-js'
 
 const isSupabaseConfigured =
@@ -49,7 +51,7 @@ export function useAuth() {
     if (!supabase) return { error: new Error('Supabase not configured') }
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${window.location.origin}/auth/callback` },
+      options: { redirectTo: `${window.location.origin}${BASE_PATH}/auth/callback` },
     })
     return { error }
   }, [supabase])
@@ -58,7 +60,7 @@ export function useAuth() {
     if (!supabase) return { error: new Error('Supabase not configured') }
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'github',
-      options: { redirectTo: `${window.location.origin}/auth/callback` },
+      options: { redirectTo: `${window.location.origin}${BASE_PATH}/auth/callback` },
     })
     return { error }
   }, [supabase])
@@ -67,7 +69,7 @@ export function useAuth() {
     if (!supabase) return { error: new Error('Supabase not configured') }
     const { error } = await supabase.auth.signInWithOtp({
       email,
-      options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+      options: { emailRedirectTo: `${window.location.origin}${BASE_PATH}/auth/callback` },
     })
     return { error }
   }, [supabase])

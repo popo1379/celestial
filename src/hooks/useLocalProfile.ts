@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback } from 'react'
 import type { BirthInfo } from '@/lib/astrology/engine'
 import { useAuth } from './useAuth'
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
 interface StoredProfile extends BirthInfo {
   id: string
   name: string
@@ -72,7 +74,7 @@ export function useLocalProfile() {
 
     if (user) {
       try {
-        await fetch('/api/profiles', {
+        await fetch(`${BASE_PATH}/api/profiles`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),
@@ -90,7 +92,7 @@ export function useLocalProfile() {
 
     if (user) {
       try {
-        await fetch(`/api/profiles/${id}`, {
+        await fetch(`${BASE_PATH}/api/profiles/${id}`, {
           method: 'DELETE',
         })
       } catch {}
