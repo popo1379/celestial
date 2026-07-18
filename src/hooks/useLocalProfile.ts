@@ -23,7 +23,7 @@ export function useLocalProfile() {
       if (user) {
         setSyncing(true)
         try {
-          const response = await fetch('/api/profiles')
+          const response = await fetch(`${BASE_PATH}/api/profiles`)
           const data = await response.json()
           if (data.success && data.profiles) {
             const cloudProfiles: StoredProfile[] = data.profiles.map((p: any) => ({
