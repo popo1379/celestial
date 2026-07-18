@@ -5,8 +5,8 @@ import { buildNatalSystemPrompt, buildSynastrySystemPrompt, type AIContext } fro
 const CLOUDBASE_AI_BASE_URL = process.env.CLOUDBASE_AI_BASE_URL
 const CLOUDBASE_AI_KEY = process.env.CLOUDBASE_AI_KEY
 
-// Default model — uses a general-purpose model via CloudBase
-const DEFAULT_MODEL = 'deepseek-v4-flash'
+// Default model — Tencent Hunyuan 3 via CloudBase (stable, fast in CN)
+const DEFAULT_MODEL = 'hy3'
 
 interface ChatMessage {
   role: 'user' | 'assistant' | 'system'
