@@ -33,6 +33,7 @@ const notoSansSC = Noto_Sans_SC({
 });
 
 const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://opensero.com/horoscope').replace(/\/+$/, '')
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
 // Search engine verification codes (set via Vercel env vars)
 const googleVerification = process.env.GOOGLE_SITE_VERIFICATION || ''
@@ -54,11 +55,11 @@ export const metadata: Metadata = {
     canonical: appUrl,
   },
   icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
-    apple: '/favicon.svg',
+    icon: `${basePath}/favicon.svg`,
+    shortcut: `${basePath}/favicon.svg`,
+    apple: `${basePath}/favicon.svg`,
   },
-  manifest: '/site.webmanifest',
+  manifest: `${basePath}/site.webmanifest`,
   openGraph: {
     title: 'Horoscope SERO — Free Birth Chart & AI Astrology',
     description: 'Generate your free natal chart, explore daily transits, compare synastry, and get AI-powered astrology interpretations.',
