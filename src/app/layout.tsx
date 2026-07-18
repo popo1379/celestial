@@ -40,6 +40,7 @@ const googleVerification = process.env.GOOGLE_SITE_VERIFICATION || ''
 const bingVerification = process.env.BING_SITE_VERIFICATION || ''
 
 export const metadata: Metadata = {
+  metadataBase: new URL(appUrl),
   title: "Horoscope SERO — Free Birth Chart & AI Astrology",
   description: "Generate your free natal chart, explore daily transits, compare synastry compatibility, and get AI-powered astrology interpretations. Western astrology with 10 planets, houses, and aspects.",
   keywords: [
@@ -67,11 +68,20 @@ export const metadata: Metadata = {
     siteName: 'Horoscope SERO',
     type: 'website',
     locale: 'en_US',
+    images: [
+      {
+        url: `${appUrl}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Horoscope SERO — Free Birth Chart & AI Astrology',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Horoscope SERO — Free Birth Chart & AI Astrology',
     description: 'Free natal chart, daily transits, synastry, and AI astrology interpretations.',
+    images: [`${appUrl}/og-image.png`],
   },
   robots: {
     index: true,
@@ -107,11 +117,31 @@ const websiteSchema = {
   name: 'Horoscope SERO',
   url: appUrl,
   description: 'Free natal chart, daily transits, synastry, and AI astrology interpretations.',
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: `${appUrl}/?q={search_term_string}`,
-    'query-input': 'required name=search_term_string',
+  inLanguage: 'en',
+};
+
+// Service schema describing the astrology services offered
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Horoscope SERO Astrology Services',
+  serviceType: 'Astrology chart calculation and interpretation',
+  provider: {
+    '@type': 'Organization',
+    name: 'Horoscope SERO',
+    url: appUrl,
   },
+  areaServed: 'Worldwide',
+  description:
+    'Free online astrology services including natal chart generation, daily transit horoscopes, synastry compatibility, and AI-powered astrology interpretations based on Western astrology.',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    description: 'Free access with optional account for saving profiles and charts.',
+  },
+  url: appUrl,
+  category: 'Astrology & Horoscope',
 };
 
 export default function RootLayout({
@@ -129,6 +159,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
         />
         <CosmicBackground />
         <DesktopNav />

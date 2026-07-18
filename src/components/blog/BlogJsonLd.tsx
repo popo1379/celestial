@@ -55,6 +55,32 @@ export default function BlogJsonLd({ post, appUrl }: Props) {
         }
       : null
 
+  // BreadcrumbList: Home > Blog > Post
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: appUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: `${appUrl}/blog`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: url,
+      },
+    ],
+  }
+
   return (
     <>
       <script
@@ -67,6 +93,10 @@ export default function BlogJsonLd({ post, appUrl }: Props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
     </>
   )
 }

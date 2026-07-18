@@ -10,14 +10,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/privacy', priority: 0.3, changeFrequency: 'monthly' },
     { path: '/terms', priority: 0.3, changeFrequency: 'monthly' },
     { path: '/chart', priority: 0.9, changeFrequency: 'weekly' },
-    { path: '/chart/detail', priority: 0.7, changeFrequency: 'weekly' },
-    { path: '/chart/wheel', priority: 0.7, changeFrequency: 'weekly' },
     { path: '/synastry', priority: 0.9, changeFrequency: 'weekly' },
-    { path: '/synastry/result', priority: 0.7, changeFrequency: 'weekly' },
     { path: '/transit', priority: 0.9, changeFrequency: 'daily' },
-    { path: '/profile', priority: 0.5, changeFrequency: 'weekly' },
     { path: '/ai-chat', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/auth/signin', priority: 0.3, changeFrequency: 'monthly' },
     { path: '/blog', priority: 0.8, changeFrequency: 'weekly' },
   ]
 
@@ -28,13 +23,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route.priority,
   }))
 
-  // Blog post entries (English canonical URLs; zh versions are referenced via hreflang alternates)
+  // Blog post entries with en/zh hreflang alternates
   const blogPosts = listPosts('en')
   const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: new Date(post.updated || post.date),
-    changeFrequency: 'monthly',
+    changeFrequency: 'monthly' as const,
     priority: 0.6,
+    alternates: {
+      languages: {
+        en: `${baseUrl}/blog/${post.slug}`,
+        zh: `${baseUrl}/blog/${post.slug}?lang=zh`,
+      },
+    },
   }))
 
   return [...staticEntries, ...blogEntries]
