@@ -13,6 +13,7 @@ import {
 import { planetInterpretations } from '@/lib/astrology/interpretation'
 import { AIInterpretButton } from '@/components/ai/AIInterpretButton'
 import { AIChatDrawer } from '@/components/ai/AIChatDrawer'
+import { SaveProfileModal } from '@/components/profile/SaveProfileModal'
 import { useTranslation } from '@/hooks/useTranslation'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -203,8 +204,16 @@ export default function ChartPage() {
   const router = useRouter()
   const [chart, setChart] = useState<ChartResult | null>(null)
   const [chartLoading, setChartLoading] = useState(true)
+  const [saveModalOpen, setSaveModalOpen] = useState(false)
+  const [showSaveToast, setShowSaveToast] = useState(false)
 
   const isLoggedIn = !!user
+
+  const handleSaveSuccess = () => {
+    setSaveModalOpen(false)
+    setShowSaveToast(true)
+    setTimeout(() => setShowSaveToast(false), 2500)
+  }
 
   useEffect(() => {
     if (authLoading) return
@@ -326,7 +335,14 @@ export default function ChartPage() {
               interactive={isLoggedIn}
             />
           </div>
-          <div className="mt-4 flex justify-center">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+            <button
+              onClick={() => birthInfo && setSaveModalOpen(true)}
+              className="flex items-center gap-2 rounded-lg border border-accent-gold/40 bg-accent-gold/10 px-4 py-2 text-sm font-medium text-accent-gold transition-all duration-200 hover:bg-accent-gold/20"
+            >
+              <span>💾</span>
+              {t('profile.saveChart')}
+            </button>
             <Link
               href="/chart/wheel"
               className="flex items-center gap-2 rounded-lg border border-bg-secondary bg-bg-elevated px-4 py-2 text-xs font-medium text-text-tertiary transition-colors hover:border-accent-gold/50 hover:text-accent-gold"
@@ -462,6 +478,30 @@ export default function ChartPage() {
         )}
       </div>
       <AIChatDrawer contextType="natal" chart={chart} />
+
+      {birthInfo && (
+        <SaveProfileModal
+          open={saveModalOpen}
+          onClose={() => setSaveModalOpen(false)}
+          birthInfo={birthInfo}
+          maxProfiles={20}
+        />
+      )}
+
+      <AnimatePresence>
+        {showSaveToast && (
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ duration: 0.25 }}
+            className="fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-xl border border-accent-gold/40 bg-bg-elevated px-5 py-3 text-sm font-medium text-text-primary shadow-lg shadow-accent-gold/10 backdrop-blur-sm"
+          >
+            <span className="mr-2 text-accent-gold">✦</span>
+            {t('profile.saveSuccess')}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   )
 }

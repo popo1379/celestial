@@ -32,15 +32,19 @@ export async function getProfilesForUser(userId: string): Promise<Profile[]> {
 
 export async function createProfile(
   userId: string,
-  data: Omit<Profile, 'id' | 'user_id' | 'created_at' | 'updated_at'>
+  data: Omit<Profile, 'id' | 'user_id' | 'created_at' | 'updated_at'> & { id?: string }
 ): Promise<Profile | null> {
   const supabase = await createClient()
+  const insertData: Record<string, any> = {
+    user_id: userId,
+    ...data,
+  }
+  if (data.id) {
+    insertData.id = data.id
+  }
   const { data: profile } = await supabase
     .from('profiles')
-    .insert({
-      user_id: userId,
-      ...data,
-    })
+    .insert(insertData)
     .select('*')
     .single()
   return profile

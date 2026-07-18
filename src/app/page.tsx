@@ -35,7 +35,9 @@ function BirthInfoForm({ onSuccess }: { onSuccess?: () => void }) {
   const router = useRouter()
   const setBirthInfo = useGuestChartStore((s) => s.setBirthInfo)
   const { t } = useTranslation()
+  const { user } = useAuth()
 
+  const [name, setName] = useState('')
   const [month, setMonth] = useState('')
   const [day, setDay] = useState('')
   const [year, setYear] = useState('')

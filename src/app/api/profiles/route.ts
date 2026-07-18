@@ -23,13 +23,14 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json()
-  const { name, year, month, day, hour, minute, latitude, longitude, timezoneOffset, hasExactTime } = body
+  const { id, name, year, month, day, hour, minute, latitude, longitude, timezoneOffset, hasExactTime } = body
 
   if (!name || !year || !month || !day) {
     return NextResponse.json({ success: false, error: 'Missing required fields' }, { status: 400 })
   }
 
   const profile = await createProfile(user.id, {
+    ...(id ? { id } : {}),
     name,
     year,
     month,

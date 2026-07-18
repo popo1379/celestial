@@ -226,6 +226,14 @@ export const translations: Record<Locale, Dict> = {
     'profile.unknownPlace': 'Unknown place',
     'profile.sunSign': 'Sun',
     'profile.syncing': 'Syncing with cloud...',
+    'profile.saveChart': 'Save Chart to Profiles',
+    'profile.saveChartDesc': 'Give this chart a name to save it to your profiles.',
+    'profile.enterName': 'Please enter a profile name',
+    'profile.saveFailed': 'Failed to save profile. Please try again.',
+    'profile.saveLocalHint': 'Saved locally. Sign in to sync across devices.',
+    'profile.atLimitHint': 'You have reached the limit of 20 profiles. Delete one to save more.',
+    'profile.limitReached': 'Profile limit reached',
+    'profile.saveSuccess': 'Chart saved successfully',
 
     // Auth
     'auth.welcome': 'Welcome',
@@ -748,6 +756,14 @@ export const translations: Record<Locale, Dict> = {
     'profile.unknownPlace': '地点未知',
     'profile.sunSign': '太阳',
     'profile.syncing': '正在同步云端...',
+    'profile.saveChart': '保存到档案',
+    'profile.saveChartDesc': '给这张星盘起个名字，保存到你的档案中。',
+    'profile.enterName': '请输入档案名称',
+    'profile.saveFailed': '保存失败，请重试',
+    'profile.saveLocalHint': '已保存到本地。登录后可在多设备间同步。',
+    'profile.atLimitHint': '已达到 20 个档案上限，删除一个后再保存新档案。',
+    'profile.limitReached': '已达档案数量上限',
+    'profile.saveSuccess': '星盘已保存',
 
     // 认证
     'auth.welcome': '欢迎',
