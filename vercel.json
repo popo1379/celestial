@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/horoscope",
+      "permanent": true
+    }
+  ]
+}
