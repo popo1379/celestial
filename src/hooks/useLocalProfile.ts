@@ -6,6 +6,7 @@ import { useAuth } from './useAuth'
 
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || ''
 const MAX_PROFILES = 20
+const DEFAULT_PROFILE_KEY = 'celestial_default_profile_id'
 
 interface StoredProfile extends BirthInfo {
   id: string
@@ -42,22 +43,68 @@ function writeLocalProfiles(profiles: StoredProfile[]) {
   localStorage.setItem('celestial_profiles', JSON.stringify(profiles))
 }
 
+function readLocalDefaultId(): string | null {
+  try {
+    return localStorage.getItem(DEFAULT_PROFILE_KEY) || null
+  } catch {
+    return null
+  }
+}
+
+function writeLocalDefaultId(id: string | null) {
+  if (id) {
+    localStorage.setItem(DEFAULT_PROFILE_KEY, id)
+  } else {
+    localStorage.removeItem(DEFAULT_PROFILE_KEY)
+  }
+}
+
+async function fetchCloudDefaultId(): Promise<string | null> {
+  try {
+    const res = await fetch(`${BASE_PATH}/api/profiles/default`)
+    if (!res.ok) return null
+    const data = await res.json()
+    if (data.success && data.profileId) return data.profileId
+    return null
+  } catch {
+    return null
+  }
+}
+
+async function setCloudDefaultId(id: string): Promise<boolean> {
+  try {
+    const res = await fetch(`${BASE_PATH}/api/profiles/default`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ profileId: id }),
+    })
+    if (!res.ok) return false
+    const data = await res.json()
+    return !!data.success
+  } catch {
+    return false
+  }
+}
+
 export function useLocalProfile() {
   const [profiles, setProfiles] = useState<StoredProfile[]>([])
+  const [defaultId, setDefaultIdState] = useState<string | null>(null)
   const [loaded, setLoaded] = useState(false)
   const [syncing, setSyncing] = useState(false)
   const { user } = useAuth()
-  const prevUserIdRef = useRef<string | null>(null)
+  const prevUserIdRef = useRef<string | null | undefined>(undefined)
 
   useEffect(() => {
-    const userId = user?.id || null
-    const userIdChanged = prevUserIdRef.current !== userId
-    prevUserIdRef.current = userId
+    // Run whenever user changes (including null -> user, user -> null, userA -> userB)
+    const currentUserId = user?.id || null
+    if (prevUserIdRef.current === currentUserId) return
+    prevUserIdRef.current = currentUserId
 
     const loadProfiles = async () => {
-      if (user) {
-        setSyncing(true)
-        try {
+      setSyncing(true)
+      try {
+        if (user) {
+          // Logged in: pull from cloud, then merge any local-only profiles up
           const response = await fetch(`${BASE_PATH}/api/profiles`)
           const data = await response.json()
           if (data.success && data.profiles) {
@@ -97,30 +144,44 @@ export function useLocalProfile() {
                 }
               }
 
+              // Re-fetch to include uploaded profiles
               const refreshRes = await fetch(`${BASE_PATH}/api/profiles`)
               const refreshData = await refreshRes.json()
               if (refreshData.success && refreshData.profiles) {
                 const finalProfiles: StoredProfile[] = refreshData.profiles.map(mapCloudProfile)
                 setProfiles(finalProfiles)
                 writeLocalProfiles(finalProfiles)
-                setSyncing(false)
-                setLoaded(true)
-                return
+              } else {
+                setProfiles(cloudProfiles)
+                writeLocalProfiles(cloudProfiles)
               }
+            } else {
+              setProfiles(cloudProfiles)
+              writeLocalProfiles(cloudProfiles)
             }
 
-            setProfiles(cloudProfiles)
-            writeLocalProfiles(cloudProfiles)
+            // Fetch default profile id from cloud
+            const cloudDefaultId = await fetchCloudDefaultId()
+            if (cloudDefaultId) {
+              setDefaultIdState(cloudDefaultId)
+              writeLocalDefaultId(cloudDefaultId)
+            } else {
+              // No default set on cloud yet — keep local default (may be null)
+              setDefaultIdState(readLocalDefaultId())
+            }
           }
-        } catch {
+        } else {
+          // Not logged in: use local only
           const localProfiles = readLocalProfiles()
           setProfiles(localProfiles)
+          setDefaultIdState(readLocalDefaultId())
         }
-        setSyncing(false)
-      } else {
+      } catch {
         const localProfiles = readLocalProfiles()
         setProfiles(localProfiles)
+        setDefaultIdState(readLocalDefaultId())
       }
+      setSyncing(false)
       setLoaded(true)
     }
 
@@ -137,6 +198,16 @@ export function useLocalProfile() {
     const updated = [...profiles, newProfile]
     setProfiles(updated)
     writeLocalProfiles(updated)
+
+    // If this is the first profile, auto-set as default
+    const wasFirst = profiles.length === 0
+    if (wasFirst) {
+      setDefaultIdState(id)
+      writeLocalDefaultId(id)
+      if (user) {
+        await setCloudDefaultId(id)
+      }
+    }
 
     if (user) {
       try {
@@ -174,6 +245,20 @@ export function useLocalProfile() {
     setProfiles(updated)
     writeLocalProfiles(updated)
 
+    // If removed profile was default, pick a new default (first remaining)
+    if (defaultId === id) {
+      const newDefault = updated[0]?.id || null
+      setDefaultIdState(newDefault)
+      writeLocalDefaultId(newDefault)
+      if (user && newDefault) {
+        await setCloudDefaultId(newDefault)
+      } else if (user && !newDefault) {
+        // No profiles left; clear cloud default (best-effort)
+        // Reuse endpoint with empty — but our API requires a profileId,
+        // so just leave cloud default as-is; it will be corrected on next set.
+      }
+    }
+
     if (user) {
       try {
         await fetch(`${BASE_PATH}/api/profiles/${id}`, {
@@ -181,7 +266,26 @@ export function useLocalProfile() {
         })
       } catch {}
     }
+  }, [profiles, user, defaultId])
+
+  const setDefault = useCallback(async (id: string) => {
+    // Only allow setting default to an existing profile
+    if (!profiles.some(p => p.id === id)) return
+    setDefaultIdState(id)
+    writeLocalDefaultId(id)
+    if (user) {
+      await setCloudDefaultId(id)
+    }
   }, [profiles, user])
 
-  return { profiles, save, remove, loaded, syncing, maxProfiles: MAX_PROFILES }
+  return {
+    profiles,
+    save,
+    remove,
+    loaded,
+    syncing,
+    maxProfiles: MAX_PROFILES,
+    defaultId,
+    setDefault,
+  }
 }

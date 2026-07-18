@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useAuth } from '@/hooks/useAuth'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useGuestChartStore } from '@/stores/guest-store'
+import { useLocalProfile } from '@/hooks/useLocalProfile'
 import { searchCities } from '@/lib/astrology/coordinates'
 import { calculateFullNatalChart, calculateDailyFortune, getSignElement, type ChartResult, type DailyFortuneResult } from '@/lib/astrology/engine'
 import type { BirthInfo } from '@/lib/astrology/engine'
@@ -445,8 +446,35 @@ function AuthenticatedView({ user }: { user: NonNullable<ReturnType<typeof useAu
 
 function TransitScoreCard() {
   const birthInfo = useGuestChartStore((s) => s.birthInfo)
+  const setBirthInfo = useGuestChartStore((s) => s.setBirthInfo)
+  const { profiles, defaultId, loaded: profilesLoaded } = useLocalProfile()
   const [fortune, setFortune] = useState<DailyFortuneResult | null>(null)
   const { t } = useTranslation()
+  const autoLoadedRef = useRef(false)
+
+  // Auto-load default profile into guest store if no birthInfo present
+  useEffect(() => {
+    if (autoLoadedRef.current) return
+    if (profilesLoaded && !birthInfo) {
+      const defaultProfile = defaultId
+        ? profiles.find(p => p.id === defaultId)
+        : profiles[0]
+      if (defaultProfile) {
+        autoLoadedRef.current = true
+        setBirthInfo({
+          year: defaultProfile.year,
+          month: defaultProfile.month,
+          day: defaultProfile.day,
+          hour: defaultProfile.hour,
+          minute: defaultProfile.minute,
+          latitude: defaultProfile.latitude,
+          longitude: defaultProfile.longitude,
+          timezoneOffset: defaultProfile.timezoneOffset,
+          hasExactTime: defaultProfile.hasExactTime,
+        })
+      }
+    }
+  }, [profilesLoaded, profiles, defaultId, birthInfo, setBirthInfo])
 
   useEffect(() => {
     if (!birthInfo) {

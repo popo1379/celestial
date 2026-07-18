@@ -44,7 +44,7 @@ const zodiacSymbols: Record<string, string> = {
 export default function ProfilePage() {
   const router = useRouter()
   const { t, locale } = useTranslation()
-  const { profiles, save, remove, loaded, syncing } = useLocalProfile()
+  const { profiles, save, remove, loaded, syncing, defaultId, setDefault } = useLocalProfile()
   const setBirthInfo = useGuestChartStore((s) => s.setBirthInfo)
   const [showForm, setShowForm] = useState(false)
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null)
@@ -448,9 +448,16 @@ export default function ProfilePage() {
                 >
                   <div className="mb-4 flex items-start justify-between">
                     <div>
-                      <h3 className="font-serif text-lg font-semibold text-text-primary">
-                        {profile.name || t('profile.profile') + ' ' + (index + 1)}
-                      </h3>
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-serif text-lg font-semibold text-text-primary">
+                          {profile.name || t('profile.profile') + ' ' + (index + 1)}
+                        </h3>
+                        {defaultId === profile.id && (
+                          <span className="rounded-full border border-accent-gold/40 bg-accent-gold/10 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-accent-gold">
+                            {t('profile.default') || 'Default'}
+                          </span>
+                        )}
+                      </div>
                       {profile.name && (
                         <p className="text-xs text-text-tertiary">
                           {t('profile.profile')} {index + 1}
@@ -505,6 +512,15 @@ export default function ProfilePage() {
                     >
                       {t('profile.viewChart')}
                     </button>
+                    {defaultId !== profile.id && (
+                      <button
+                        onClick={() => setDefault(profile.id)}
+                        className="rounded-lg border border-bg-secondary px-3 py-2 text-xs font-medium text-text-tertiary transition-colors hover:border-accent-gold/40 hover:text-accent-gold"
+                        title={t('profile.setAsDefault') || 'Set as default'}
+                      >
+                        {t('profile.setAsDefault') || 'Set Default'}
+                      </button>
+                    )}
                     {deleteConfirmId === profile.id ? (
                       <div className="flex items-center gap-2">
                         <button

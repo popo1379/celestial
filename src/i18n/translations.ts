@@ -234,6 +234,8 @@ export const translations: Record<Locale, Dict> = {
     'profile.atLimitHint': 'You have reached the limit of 20 profiles. Delete one to save more.',
     'profile.limitReached': 'Profile limit reached',
     'profile.saveSuccess': 'Chart saved successfully',
+    'profile.default': 'Default',
+    'profile.setAsDefault': 'Set Default',
 
     // Auth
     'auth.welcome': 'Welcome',
@@ -764,6 +766,8 @@ export const translations: Record<Locale, Dict> = {
     'profile.atLimitHint': '已达到 20 个档案上限，删除一个后再保存新档案。',
     'profile.limitReached': '已达档案数量上限',
     'profile.saveSuccess': '星盘已保存',
+    'profile.default': '默认',
+    'profile.setAsDefault': '设为默认',
 
     // 认证
     'auth.welcome': '欢迎',
