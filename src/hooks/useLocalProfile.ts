@@ -74,12 +74,18 @@ export function useLocalProfile() {
 
     if (user) {
       try {
-        await fetch(`${BASE_PATH}/api/profiles`, {
+        const res = await fetch(`${BASE_PATH}/api/profiles`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),
         })
-      } catch {}
+        if (!res.ok) {
+          const errText = await res.text().catch(() => '')
+          console.error('[profiles] POST failed:', res.status, errText)
+        }
+      } catch (e) {
+        console.error('[profiles] POST error:', e)
+      }
     }
 
     return newProfile
