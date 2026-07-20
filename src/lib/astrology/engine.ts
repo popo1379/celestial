@@ -322,125 +322,56 @@ export function calculateSun(JD: number): PlanetPosition {
 }
 
 export function calculateMoon(JD: number): PlanetPosition {
-  const T = getJulianCentury(JD);
-
-  const L = 218.316 + 481267.8813 * T;
-  const L_norm = toRange360(L);
-
-  const M = 134.963 + 477198.8673 * T;
-  const M_norm = toRange360(M);
-
-  const F = 93.272 + 483202.0175 * T;
-  const F_norm = toRange360(F);
-
-  const Ms = 357.52911 + 35999.05029 * T;
-  const Ms_norm = toRange360(Ms);
-
-  const D = 297.8502 + 445267.1115 * T;
-  const D_norm = toRange360(D);
-
-  const lambda = L_norm +
-    6.289 * sinDeg(M_norm) +
-    (-1.274) * sinDeg(M_norm - 2 * D_norm) +
-    0.658 * sinDeg(2 * D_norm) +
-    (-0.186) * sinDeg(Ms_norm) +
-    (-0.059) * sinDeg(2 * M_norm - 2 * D_norm) +
-    (-0.057) * sinDeg(M_norm - 2 * D_norm + Ms_norm) +
-    0.053 * sinDeg(M_norm + 2 * D_norm) +
-    0.046 * sinDeg(2 * D_norm - Ms_norm) +
-    0.041 * sinDeg(M_norm - Ms_norm) +
-    (-0.035) * sinDeg(D_norm) +
-    (-0.031) * sinDeg(M_norm + Ms_norm);
-
+  const date = new Date((JD - 2440587.5) * 86400 * 1000);
+  const result = ephemeris.getPlanet('moon', date);
+  const lambda = result.observed.moon.apparentLongitudeDd;
+  
   return {
     name: 'Moon',
     symbol: '☽',
-    longitude: toRange360(lambda),
+    longitude: lambda,
     longitudeStr: formatLongitude(lambda)
   };
 }
 
+const ephemeris = require('ephemeris');
+
 export function calculateMercury(JD: number): PlanetPosition {
-  const T = getJulianCentury(JD);
-
-  const L = 252.25 + 149474.0708 * T;
-  const L_norm = toRange360(L);
-
-  const a = 0.387098;
-  const e = 0.205635 + 0.0000000559 * T;
-  const i = 7.00487 - 0.00001871 * T;
-  const omega = 48.33167 - 0.00001245 * T;
-  const omegaP = 77.45645 + 0.00001514 * T;
-
-  const M = L_norm - omegaP;
-  const M_norm = toRange360(M);
-
-  const E = solveKepler(M_norm, e);
-
-  const nu = 2 * atan2Deg(Math.sqrt(1 + e) * sinDeg(E / 2), Math.sqrt(1 - e) * cosDeg(E / 2));
-
-  const r = a * (1 - e * cosDeg(E));
-
-  const lambda = omegaP + nu;
-  const lambda_norm = toRange360(lambda);
-
+  const date = new Date((JD - 2440587.5) * 86400 * 1000);
+  const result = ephemeris.getPlanet('mercury', date);
+  const lambda = result.observed.mercury.apparentLongitudeDd;
+  
   return {
     name: 'Mercury',
     symbol: '☿',
-    longitude: lambda_norm,
-    longitudeStr: formatLongitude(lambda_norm)
+    longitude: lambda,
+    longitudeStr: formatLongitude(lambda)
   };
 }
 
 export function calculateVenus(JD: number): PlanetPosition {
-  const T = getJulianCentury(JD);
-
-  const L = 181.9797 + 58517.81567 * T;
-  const L_norm = toRange360(L);
-
-  const e = 0.006772;
-  const omegaP = 131.53298;
-
-  const M = L_norm - omegaP;
-  const M_norm = toRange360(M);
-
-  const E = solveKepler(M_norm, e);
-  const nu = 2 * atan2Deg(Math.sqrt(1 + e) * sinDeg(E / 2), Math.sqrt(1 - e) * cosDeg(E / 2));
-
-  const lambda = omegaP + nu;
-  const lambda_norm = toRange360(lambda);
-
+  const date = new Date((JD - 2440587.5) * 86400 * 1000);
+  const result = ephemeris.getPlanet('venus', date);
+  const lambda = result.observed.venus.apparentLongitudeDd;
+  
   return {
     name: 'Venus',
     symbol: '♀',
-    longitude: lambda_norm,
-    longitudeStr: formatLongitude(lambda_norm)
+    longitude: lambda,
+    longitudeStr: formatLongitude(lambda)
   };
 }
 
 export function calculateMars(JD: number): PlanetPosition {
-  const T = getJulianCentury(JD);
-
-  const L = 355.4333 + 19140.29893 * T;
-  const L_norm = toRange360(L);
-
-  const e = 0.093403;
-  const omegaP = 336.04084;
-
-  const M = L_norm - omegaP;
-  const M_norm = toRange360(M);
-
-  const E = solveKepler(M_norm, e);
-  const nu = 2 * atan2Deg(Math.sqrt(1 + e) * sinDeg(E / 2), Math.sqrt(1 - e) * cosDeg(E / 2));
-
-  const lambda = omegaP + nu;
-  const lambda_norm = toRange360(lambda);
-
+  const date = new Date((JD - 2440587.5) * 86400 * 1000);
+  const result = ephemeris.getPlanet('mars', date);
+  const lambda = result.observed.mars.apparentLongitudeDd;
+  
   return {
     name: 'Mars',
     symbol: '♂',
-    longitude: lambda_norm,
-    longitudeStr: formatLongitude(lambda_norm)
+    longitude: lambda,
+    longitudeStr: formatLongitude(lambda)
   };
 }
 

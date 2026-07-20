@@ -61,7 +61,7 @@ function AIChatContent() {
   }, [clearMessages])
 
   return (
-    <div className="flex h-screen flex-col bg-[#0a0a0f]">
+    <div className="flex h-[100dvh] flex-col bg-[#0a0a0f]">
       {/* Header */}
       <header className="flex items-center justify-between border-b border-[#2a2a35] px-4 py-3">
         <button
@@ -108,7 +108,9 @@ function AIChatContent() {
       </div>
 
       {/* Input */}
-      <ChatInput />
+      <div className="border-t border-[#2a2a35] p-3 bg-[#0a0a0f]">
+        <ChatInput />
+      </div>
     </div>
   )
 }

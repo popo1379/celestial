@@ -143,6 +143,7 @@ export default function WheelPage() {
           <div className="flex justify-center">
             <div style={{ width: '100%', maxWidth: 600 }}>
               <AstrologyWheel
+                ref={canvasRef}
                 planets={chart.planets}
                 ascendant={chart.ascendant}
                 midheaven={chart.midheaven}

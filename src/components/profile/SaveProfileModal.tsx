@@ -103,9 +103,9 @@ export function SaveProfileModal({ open, onClose, birthInfo, maxProfiles = 20 }:
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="fixed left-1/2 top-1/2 z-50 w-[90%] max-w-md -translate-x-1/2 -translate-y-1/2"
+            className="fixed left-1/2 top-4 bottom-4 z-50 w-[90%] max-w-md -translate-x-1/2 flex flex-col"
           >
-            <div className="rounded-2xl border border-accent-gold/30 bg-bg-elevated p-6 shadow-2xl">
+            <div className="flex-1 overflow-y-auto rounded-2xl border border-accent-gold/30 bg-bg-elevated p-6 shadow-2xl">
               <h2 className="mb-1 font-serif text-xl font-semibold text-text-primary">
                 {t('profile.saveChart') || 'Save Chart to Profiles'}
               </h2>

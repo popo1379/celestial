@@ -56,8 +56,11 @@ export const metadata: Metadata = {
     canonical: appUrl,
   },
   icons: {
-    icon: `${basePath}/favicon.svg`,
-    shortcut: `${basePath}/favicon.svg`,
+    icon: [
+      { url: `${basePath}/favicon.ico`, sizes: '16x16', type: 'image/x-icon' },
+      { url: `${basePath}/favicon.svg`, sizes: 'any', type: 'image/svg+xml' },
+    ],
+    shortcut: `${basePath}/favicon.ico`,
     apple: `${basePath}/favicon.svg`,
   },
   manifest: `${basePath}/site.webmanifest`,

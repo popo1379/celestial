@@ -7,9 +7,16 @@ import { useLocalProfile } from '@/hooks/useLocalProfile'
 import { useGuestChartStore } from '@/stores/guest-store'
 import { calculateNatalChart } from '@/lib/astrology/engine'
 import type { BirthInfo } from '@/lib/astrology/engine'
-import { searchCities } from '@/lib/astrology/coordinates'
+import { searchCities, cityList } from '@/lib/astrology/coordinates'
 import type { CityCoordinate } from '@/lib/astrology/coordinates'
 import { useTranslation, type Locale } from '@/hooks/useTranslation'
+
+function getCityFromCoordinates(latitude: number, longitude: number): CityCoordinate | null {
+  return cityList.find(c => 
+    Math.abs(c.latitude - latitude) < 0.001 && 
+    Math.abs(c.longitude - longitude) < 0.001
+  ) || null
+}
 
 function formatDate(month: number, day: number, year: number, locale: Locale): string {
   const dateObj = new Date(year, month - 1, day)
@@ -495,7 +502,10 @@ export default function ProfilePage() {
                       </svg>
                       <span className="text-text-secondary">
                         {profile.latitude && profile.longitude
-                          ? ((profile as any).cityState || cityQuery || t('profile.unknownLocation'))
+                          ? (() => {
+                              const city = getCityFromCoordinates(profile.latitude, profile.longitude)
+                              return city ? `${city.city}, ${city.state}` : t('profile.unknownLocation')
+                            })()
                           : t('profile.unknownPlace')}
                       </span>
                     </div>

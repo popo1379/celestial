@@ -77,17 +77,17 @@ function BigThreeCard({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="flex flex-col items-center rounded-xl border border-accent-gold/30 bg-bg-elevated p-6 text-center"
+      className="flex flex-col items-center rounded-xl border border-accent-gold/30 bg-bg-elevated p-3 sm:p-6 text-center"
     >
-      <span className="mb-1 text-xs uppercase tracking-widest text-text-tertiary">
+      <span className="mb-1 text-[10px] sm:text-xs uppercase tracking-widest text-text-tertiary">
         {label}
       </span>
-      <span className="mb-2 text-5xl">{symbol}</span>
-      <span className="mb-1 text-xl font-semibold text-text-primary">
+      <span className="mb-1 sm:mb-2 text-3xl sm:text-5xl">{symbol}</span>
+      <span className="mb-1 text-sm sm:text-xl font-semibold text-text-primary">
         {signName}
       </span>
       <DegreeDisplay degree={degree} />
-      <div className="mt-3">
+      <div className="mt-2 sm:mt-3">
         <ElementBadge element={element} />
       </div>
     </motion.div>
@@ -300,7 +300,7 @@ export default function ChartView() {
         </motion.div>
 
         <section className="mb-10">
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid grid-cols-3 gap-3 sm:gap-4">
             {bigThree.map((item) => (
               <BigThreeCard key={item.label} {...item} />
             ))}
