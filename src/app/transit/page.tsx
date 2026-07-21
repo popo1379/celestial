@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description:
     'Get your personalized daily transit horoscope with a fortune score, lucky color and number, today\'s Moon sign, and key planetary events. Western astrology daily readings based on your natal chart.',
   keywords: [
+    'sun moon and rising',
+    'big three astrology',
     'daily horoscope',
     'today horoscope',
     'transit astrology',

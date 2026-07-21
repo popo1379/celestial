@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   description:
     'Chat with AI astrology for personalized natal chart and synastry interpretations. Ask about your Sun, Moon, Rising sign, planet placements, aspects, houses, and relationship compatibility. Powered by AI with Western astrology expertise.',
   keywords: [
+    'sun moon and rising',
+    'sun moon rising sign',
+    'big three astrology',
     'AI astrology',
     'astrology AI',
     'astrology chat',
