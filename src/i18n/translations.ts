@@ -399,7 +399,7 @@ export const translations: Record<Locale, Dict> = {
     'domain.transformation': 'Transformation',
 
     // Footer
-    'footer.tagline': 'Discover the cosmos within you.',
+    'footer.tagline': 'Free birth chart with sun, moon, and rising sign. AI-powered astrology interpretations and daily horoscopes.',
     'footer.product': 'Product',
     'footer.resources': 'Resources',
     'footer.legal': 'Legal',

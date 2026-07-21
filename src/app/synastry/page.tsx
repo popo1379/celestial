@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description:
     'Compare two birth charts for free with our synastry compatibility tool. Discover relationship dynamics through Sun, Moon, Venus, and Mars aspects. Western astrology relationship analysis with AI interpretations.',
   keywords: [
+    'sun moon and rising',
+    'big three astrology',
     'synastry chart',
     'astrology compatibility',
     'birth chart compatibility',

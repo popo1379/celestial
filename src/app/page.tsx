@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   description:
     'Generate your free natal chart in seconds. Explore daily transits, synastry compatibility, and AI-powered astrology interpretations. Western astrology with 10 planets, houses, and major aspects — no signup required.',
   keywords: [
+    'sun moon and rising',
+    'sun moon rising sign',
+    'big three astrology',
     'free birth chart',
     'natal chart',
     'AI astrology',

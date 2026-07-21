@@ -1,16 +1,27 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'About — Horoscope SERO',
-  description: 'Learn about Horoscope SERO — our story, philosophy, and approach to modern astrology.',
+  title: 'About — Horoscope SERO | Free Birth Chart & Sun Moon Rising',
+  description:
+    'Learn about Horoscope SERO — your gateway to understanding the cosmos within and around you. Free birth chart, sun moon and rising, AI-powered astrology interpretations.',
+  keywords: [
+    'sun moon and rising',
+    'big three astrology',
+    'free birth chart',
+    'natal chart',
+    'astrology',
+    'AI astrology',
+    'horoscope',
+  ],
   openGraph: {
-    title: 'About — Horoscope SERO',
-    description: 'Learn about Horoscope SERO — our story, philosophy, and approach to modern astrology.',
+    title: 'About — Horoscope SERO | Free Birth Chart & Sun Moon Rising',
+    description:
+      'Learn about Horoscope SERO — your gateway to understanding the cosmos within. Free birth chart with sun moon and rising, AI-powered interpretations.',
   },
   twitter: {
     card: 'summary',
     title: 'About — Horoscope SERO',
-    description: 'Learn about Horoscope SERO — our story, philosophy, and approach to modern astrology.',
+    description: 'Free birth chart and sun moon and rising astrology on Horoscope SERO.',
   },
   robots: {
     index: true,
