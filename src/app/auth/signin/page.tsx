@@ -61,6 +61,8 @@ export default function SignInPage() {
   const [emailLoading, setEmailLoading] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [cooldownEnd, setCooldownEnd] = useState(0)
+  const [tick, setTick] = useState(0)
 
   // Redirect if already logged in (test mode direct login)
   useEffect(() => {
@@ -68,6 +70,17 @@ export default function SignInPage() {
       router.replace('/profile')
     }
   }, [user, router])
+
+  useEffect(() => {
+    if (cooldownEnd <= Date.now()) return
+    const timer = setInterval(() => {
+      setTick((t) => t + 1)
+      if (Date.now() >= cooldownEnd) {
+        clearInterval(timer)
+      }
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [cooldownEnd])
 
   const handleGoogleSignIn = async () => {
     setGoogleLoading(true)
@@ -96,6 +109,7 @@ export default function SignInPage() {
   const handleEmailSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!email.trim()) return
+    if (Date.now() < cooldownEnd) return
     setEmailLoading(true)
     const { error } = await signInWithEmail(email.trim())
     if (!error) {
@@ -105,6 +119,12 @@ export default function SignInPage() {
         return
       }
       setEmailSent(true)
+      setCooldownEnd(Date.now() + 60000)
+    } else {
+      if (error.message.includes('Too Many') || error.message.includes('429')) {
+        setCooldownEnd(Date.now() + 60000)
+      }
+      setError(error.message)
     }
     setEmailLoading(false)
   }
@@ -189,13 +209,13 @@ export default function SignInPage() {
             />
             <button
               type="submit"
-              disabled={emailLoading || !email.trim()}
+              disabled={emailLoading || !email.trim() || Date.now() < cooldownEnd}
               className="flex w-full items-center justify-center gap-3 rounded-lg border border-[#2a2a3a] bg-[#14141d] px-4 py-3 text-sm font-medium text-[#e8e6e3] transition hover:border-[#c9a96e] disabled:cursor-not-allowed disabled:opacity-60"
             >
               {emailLoading ? (
                 <Spinner />
               ) : null}
-              {emailLoading ? t('auth.sending') : t('auth.sendMagicLink')}
+              {emailLoading ? t('auth.sending') : Date.now() < cooldownEnd ? `Try again in ${Math.ceil((cooldownEnd - Date.now()) / 1000)}s` : t('auth.sendMagicLink')}
             </button>
           </form>
         )}
