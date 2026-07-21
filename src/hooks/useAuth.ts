@@ -84,19 +84,18 @@ export function useAuth() {
   const signInWithEmail = useCallback(async (email: string) => {
     if (!supabase) {
       if (!isTestMode) return { error: new Error('Supabase not configured') }
-      const mockUser: User = {
+      const mockUser = {
         id: `test_${Date.now()}`,
         email: email,
+        aud: 'authenticated',
         emailConfirmedAt: new Date().toISOString(),
-        phone: null,
-        phoneConfirmedAt: null,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
         app_metadata: {},
         user_metadata: {},
         identities: [],
         is_anonymous: false,
-      }
+      } as User
       localStorage.setItem('test_user', JSON.stringify(mockUser))
       setUser(mockUser)
       return { error: null }
