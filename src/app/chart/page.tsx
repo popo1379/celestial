@@ -9,14 +9,16 @@ export const metadata: Metadata = {
   description:
     'View your free natal chart wheel with Sun, Moon, Rising sign, 10 planet positions, element distribution, and AI-powered interpretations. Explore the Big Three and house cusps with Western astrology.',
   keywords: [
+    'sun moon and rising',
+    'sun moon rising sign',
+    'big three astrology',
     'natal chart',
     'birth chart',
     'my natal chart',
     'free natal chart reading',
     'birth chart wheel',
     'planet positions',
-    'sun moon rising sign',
-    'big three astrology',
+    'sun sign moon sign rising sign',
     'astrology calculator',
     'western astrology',
     'house cusps',
