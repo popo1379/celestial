@@ -52,7 +52,8 @@ function AIChatContent() {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
     }
     prevMessagesLen.current = messages.length
-  }, [messages, isLoading])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [messages])
 
   useEffect(() => {
     return () => {
@@ -61,7 +62,7 @@ function AIChatContent() {
   }, [clearMessages])
 
   return (
-    <div className="flex min-h-screen min-h-[100dvh] flex-col bg-[#0a0a0f]">
+    <div className="flex h-[calc(100dvh-3.5rem)] flex-col bg-[#0a0a0f] md:h-[calc(100dvh-4rem)]">
       <header className="flex items-center justify-between border-b border-[#2a2a35] px-4 py-3">
         <button
           onClick={() => router.back()}
