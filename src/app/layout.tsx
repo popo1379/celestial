@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter, Noto_Serif_SC, Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
 import DesktopNav from "@/components/layout/DesktopNav";
-import MobileTabBar from "@/components/layout/MobileTabBar";
-import Footer from "@/components/layout/Footer";
+import { MobileTopBar } from "@/components/layout/MobileTopBar";
+import { ConditionalLayout } from "@/components/layout/ConditionalLayout";
 import CosmicBackground from "@/components/layout/CosmicBackground";
 
 const playfair = Playfair_Display({
@@ -35,7 +35,6 @@ const notoSansSC = Noto_Sans_SC({
 const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://opensero.com/horoscope').replace(/\/+$/, '')
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
-// Search engine verification codes (set via Vercel env vars)
 const googleVerification = process.env.GOOGLE_SITE_VERIFICATION || ''
 const bingVerification = process.env.BING_SITE_VERIFICATION || ''
 
@@ -101,7 +100,6 @@ export const metadata: Metadata = {
   ...(bingVerification ? { other: { 'msvalidate.01': bingVerification } } : {}),
 };
 
-// JSON-LD structured data
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -123,7 +121,6 @@ const websiteSchema = {
   inLanguage: 'en',
 };
 
-// Service schema describing the astrology services offered
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -154,7 +151,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`dark ${inter.variable} ${playfair.variable} ${notoSerifSC.variable} ${notoSansSC.variable}`} suppressHydrationWarning>
-      <body>
+      <body suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -169,11 +166,12 @@ export default function RootLayout({
         />
         <CosmicBackground />
         <DesktopNav />
-        <main className="pt-0 md:pt-16 pb-[100px] md:pb-0">
-          {children}
+        <MobileTopBar />
+        <main className="pt-14 md:pt-16">
+          <ConditionalLayout>
+            {children}
+          </ConditionalLayout>
         </main>
-        <Footer />
-        <MobileTabBar />
       </body>
     </html>
   );

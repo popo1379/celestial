@@ -5,10 +5,20 @@ import { usePathname } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher'
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 export default function MobileTabBar() {
   const pathname = usePathname()
   const { t } = useTranslation()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (mounted && pathname.includes('/ai-chat')) {
+    return null
+  }
 
   const tabs = [
     { href: '/', label: t('nav.home'), icon: '✦' },
@@ -24,31 +34,34 @@ export default function MobileTabBar() {
       <div className="h-[60px] border-t border-[#1e1e2a] bg-[#0a0a0f]/90 backdrop-blur-md">
         <div className="mx-auto flex h-full max-w-lg items-center justify-around px-2">
           {tabs.map((tab) => {
-            const isActive =
+            const isActive = mounted && (
               tab.href === '/'
                 ? pathname === '/'
                 : pathname.startsWith(tab.href)
+            )
             return (
               <Link
                 key={tab.href}
                 href={tab.href}
-                className="flex flex-col items-center gap-0.5"
+                className="flex flex-col items-center gap-0.5 relative"
               >
                 <motion.span
-                  animate={{
+                  animate={mounted ? {
                     scale: isActive ? 1.15 : 1,
                     color: isActive ? '#c9a96e' : '#5a5a6a',
-                  }}
+                  } : {}}
                   transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                   className="text-lg"
+                  style={{ color: isActive ? '#c9a96e' : '#5a5a6a' }}
                 >
                   {tab.icon}
                 </motion.span>
                 <motion.span
-                  animate={{
+                  animate={mounted ? {
                     color: isActive ? '#c9a96e' : '#5a5a6a',
-                  }}
+                  } : {}}
                   className="text-[10px] font-medium"
+                  style={{ color: isActive ? '#c9a96e' : '#5a5a6a' }}
                 >
                   {tab.label}
                 </motion.span>

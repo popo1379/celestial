@@ -2,7 +2,8 @@
 
 import { useAuth } from '@/hooks/useAuth'
 import { useTranslation } from '@/hooks/useTranslation'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 function GoogleIcon() {
   return (
@@ -48,15 +49,25 @@ function Spinner() {
   )
 }
 
+const isTestMode = typeof window !== 'undefined' && process.env.NEXT_PUBLIC_TEST_MODE === 'true'
+
 export default function SignInPage() {
-  const { signInWithGoogle, signInWithGithub, signInWithEmail } = useAuth()
+  const { user, signInWithGoogle, signInWithGithub, signInWithEmail } = useAuth()
   const { t } = useTranslation()
+  const router = useRouter()
   const [email, setEmail] = useState('')
   const [googleLoading, setGoogleLoading] = useState(false)
   const [githubLoading, setGithubLoading] = useState(false)
   const [emailLoading, setEmailLoading] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  // Redirect if already logged in (test mode direct login)
+  useEffect(() => {
+    if (user) {
+      router.replace('/profile')
+    }
+  }, [user, router])
 
   const handleGoogleSignIn = async () => {
     setGoogleLoading(true)
@@ -88,6 +99,11 @@ export default function SignInPage() {
     setEmailLoading(true)
     const { error } = await signInWithEmail(email.trim())
     if (!error) {
+      // In test mode, user is set directly - redirect immediately
+      if (isTestMode) {
+        router.replace('/profile')
+        return
+      }
       setEmailSent(true)
     }
     setEmailLoading(false)

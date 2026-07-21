@@ -59,7 +59,7 @@ export function ChatInput() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="border-t border-[#2a2a35] p-3">
+    <form onSubmit={handleSubmit} className="p-3">
       <div className="flex items-end gap-2">
         <textarea
           value={input}

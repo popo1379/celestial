@@ -28,13 +28,11 @@ function AIChatContent() {
   const personA = useSynastryStore((s) => s.personA)
   const personB = useSynastryStore((s) => s.personB)
 
-  // Compute charts based on context type
   const chart = birthInfo ? computeChart(birthInfo) : null
   const chartA = personA ? calculateFullNatalChart(personA) : null
   const chartB = personB ? calculateFullNatalChart(personB) : null
   const synastry = chartA && chartB ? calculateSynastryChart(chartA, chartB) : null
 
-  // Set context data on mount
   useEffect(() => {
     setContextType(contextType)
     setContextData({
@@ -48,12 +46,14 @@ function AIChatContent() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contextType])
 
-  // Auto-scroll to bottom on new messages
+  const prevMessagesLen = useRef(messages.length)
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (messages.length > prevMessagesLen.current) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }
+    prevMessagesLen.current = messages.length
   }, [messages, isLoading])
 
-  // Clear messages on unmount
   useEffect(() => {
     return () => {
       clearMessages()
@@ -61,8 +61,7 @@ function AIChatContent() {
   }, [clearMessages])
 
   return (
-    <div className="flex h-[100dvh] flex-col bg-[#0a0a0f]">
-      {/* Header */}
+    <div className="flex min-h-screen min-h-[100dvh] flex-col bg-[#0a0a0f]">
       <header className="flex items-center justify-between border-b border-[#2a2a35] px-4 py-3">
         <button
           onClick={() => router.back()}
@@ -88,14 +87,12 @@ function AIChatContent() {
         <div className="w-16" />
       </header>
 
-      {/* Context Card */}
       <ContextCard
         chart={chart || chartA}
         chartB={contextType === 'synastry' ? (chartB ?? undefined) : undefined}
         contextType={contextType}
       />
 
-      {/* Messages */}
       <div className="flex-1 overflow-y-auto py-2">
         {messages.length === 0 && (
           <PresetQuestions contextType={contextType} />
@@ -107,7 +104,6 @@ function AIChatContent() {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input */}
       <div className="border-t border-[#2a2a35] p-3 bg-[#0a0a0f]">
         <ChatInput />
       </div>

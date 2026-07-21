@@ -6,11 +6,17 @@ import { useAuth } from '@/hooks/useAuth'
 import { useTranslation } from '@/hooks/useTranslation'
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher'
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 export default function DesktopNav() {
   const pathname = usePathname()
-  const { user, loading, signInWithGoogle, signOut } = useAuth()
+  const { user, loading, signOut } = useAuth()
   const { t } = useTranslation()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const navLinks = [
     { href: '/', label: t('nav.home') },
@@ -38,10 +44,11 @@ export default function DesktopNav() {
         {/* Center nav links */}
         <div className="flex items-center gap-1">
           {navLinks.map((link) => {
-            const isActive =
+            const isActive = mounted && (
               link.href === '/'
                 ? pathname === '/'
                 : pathname.startsWith(link.href)
+            )
             return (
               <Link
                 key={link.href}
@@ -65,7 +72,7 @@ export default function DesktopNav() {
         {/* Right: language switcher + auth */}
         <div className="flex items-center gap-3">
           <LanguageSwitcher variant="desktop" />
-          {loading ? (
+          {!mounted || loading ? (
             <div className="h-8 w-20 animate-pulse rounded-lg bg-[#1e1e2a]" />
           ) : user ? (
             <div className="flex items-center gap-3">
