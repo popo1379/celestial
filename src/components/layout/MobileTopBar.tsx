@@ -1,15 +1,26 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useAuth } from '@/hooks/useAuth'
 import { useTranslation } from '@/hooks/useTranslation'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export function MobileTopBar() {
+  const pathname = usePathname()
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const { user, loading, signOut } = useAuth()
   const { t } = useTranslation()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (mounted && pathname.includes('/ai-chat')) {
+    return null
+  }
 
   const navLinks = [
     { href: '/', label: t('nav.home'), icon: '✦' },

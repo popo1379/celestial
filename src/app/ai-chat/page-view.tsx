@@ -62,7 +62,7 @@ function AIChatContent() {
   }, [clearMessages])
 
   return (
-    <div className="flex h-[calc(100dvh-3.5rem)] flex-col bg-[#0a0a0f] md:h-[calc(100dvh-4rem)]">
+    <div className="fixed inset-0 z-10 flex h-screen h-[100dvh] flex-col bg-[#0a0a0f]">
       <header className="flex items-center justify-between border-b border-[#2a2a35] px-4 py-3">
         <button
           onClick={() => router.back()}
