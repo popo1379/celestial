@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { handleAIChat } from '@/lib/ai/cloudbase'
+import { handleAIChat } from '@/lib/ai/deepseek'
 
 export const runtime = 'nodejs'
 export const maxDuration = 60
