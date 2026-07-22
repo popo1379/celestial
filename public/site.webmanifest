@@ -8,6 +8,16 @@
   "theme_color": "#0a0a0f",
   "icons": [
     {
+      "src": "/horoscope/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/horoscope/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
       "src": "/horoscope/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
