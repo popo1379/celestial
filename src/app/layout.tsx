@@ -68,10 +68,12 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: `${basePath}/favicon-96x96.png`, sizes: '96x96', type: 'image/png' },
+      { url: `${basePath}/favicon-48x48.png`, sizes: '48x48', type: 'image/png' },
       { url: `${basePath}/favicon.ico`, sizes: '16x16', type: 'image/x-icon' },
       { url: `${basePath}/favicon.svg`, sizes: 'any', type: 'image/svg+xml' },
     ],
-    shortcut: `${basePath}/favicon.ico`,
+    shortcut: `${basePath}/favicon-96x96.png`,
     apple: `${basePath}/favicon.svg`,
   },
   manifest: `${basePath}/site.webmanifest`,
