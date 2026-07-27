@@ -47,5 +47,10 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <HomeView />
+  return (
+    <>
+      <h1 className="sr-only">Horoscope SERO — Free Birth Chart & AI Astrology Reading</h1>
+      <HomeView />
+    </>
+  )
 }

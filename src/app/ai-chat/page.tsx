@@ -47,5 +47,10 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <AIChatView />
+  return (
+    <>
+      <h1 className="sr-only">AI Astrology Chat — Personalized Birth Chart Interpretation | Horoscope SERO</h1>
+      <AIChatView />
+    </>
+  )
 }

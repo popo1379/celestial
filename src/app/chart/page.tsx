@@ -46,5 +46,10 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <ChartView />
+  return (
+    <>
+      <h1 className="sr-only">Your Natal Chart — Free Birth Wheel & Planet Positions | Horoscope SERO</h1>
+      <ChartView />
+    </>
+  )
 }
