@@ -36,7 +36,8 @@ export function generateMetadata({ params, searchParams }: PageProps): Metadata 
   if (!post) return {}
 
   const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://opensero.com/horoscope').replace(/\/+$/, '')
-  const url = `${appUrl}/blog/${post.slug}${post.locale === 'zh' ? '?lang=zh' : ''}`
+  const isZhLocale = post.locale === 'zh'
+  const url = `${appUrl}/blog/${post.slug}${isZhLocale ? '?lang=zh' : ''}`
   const altEn = `${appUrl}/blog/${post.slug}`
   const altZh = `${appUrl}/blog/${post.slug}?lang=zh`
 
@@ -47,8 +48,9 @@ export function generateMetadata({ params, searchParams }: PageProps): Metadata 
     alternates: {
       canonical: url,
       languages: {
-        en: altEn,
-        zh: altZh,
+        'en': altEn,
+        'zh': altZh,
+        'x-default': altEn,
       },
     },
     openGraph: {

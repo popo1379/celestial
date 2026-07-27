@@ -33,7 +33,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     alternates: {
       languages: {
         en: `${baseUrl}/blog/${post.slug}`,
-        zh: `${baseUrl}/blog/${post.slug}?lang=zh`,
+        'zh': `${baseUrl}/blog/${post.slug}?lang=zh`,
+        'x-default': `${baseUrl}/blog/${post.slug}`,
       },
     },
   }))
