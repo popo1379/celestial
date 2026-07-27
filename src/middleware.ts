@@ -2,14 +2,6 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
-  // Redirect www to non-www for SEO consistency
-  const host = request.headers.get('host')
-  if (host && host.startsWith('www.')) {
-    const url = request.nextUrl.clone()
-    url.host = host.replace(/^www\./, '')
-    return NextResponse.redirect(url, 301)
-  }
-
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
