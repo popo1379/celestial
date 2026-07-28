@@ -4,7 +4,13 @@ import { createClient } from '@/lib/supabase/server'
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
 export async function GET(request: Request) {
-  const { searchParams, origin } = new URL(request.url)
+  const requestUrl = new URL(request.url)
+  const forwardedProto = request.headers.get('x-forwarded-proto')
+  const forwardedHost = request.headers.get('x-forwarded-host')
+  const origin = forwardedProto && forwardedHost
+    ? `${forwardedProto}://${forwardedHost}`
+    : requestUrl.origin
+  const searchParams = requestUrl.searchParams
   const code = searchParams.get('code')
   const next = searchParams.get('next') ?? `${BASE_PATH}/profile`
   const error = searchParams.get('error')

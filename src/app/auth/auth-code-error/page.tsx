@@ -11,6 +11,17 @@ function ErrorContent() {
   const errorDescription = params.get('error_description')
   const { t } = useTranslation()
 
+  const getFriendlyMessage = () => {
+    const desc = (errorDescription || '').toLowerCase()
+    if (desc.includes('code verifier not found') || desc.includes('pkce')) {
+      return t('auth.errorExpiredSession') || 'Login session expired. Please request a new verification email.'
+    }
+    if (desc.includes('invalid') || desc.includes('expired') || desc.includes('already been used')) {
+      return t('auth.errorInvalidLink') || 'The verification link is invalid or has already been used. Please try again.'
+    }
+    return t('auth.couldNotComplete')
+  }
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#0a0a0f] p-4">
       <div className="w-full max-w-md rounded-xl border border-[#1e1e2a] bg-[#0f0f15] p-8 text-center shadow-2xl">
@@ -19,15 +30,12 @@ function ErrorContent() {
           {t('auth.authFailed')}
         </h1>
         <p className="mb-2 text-sm text-[#a8a6a3]">
-          {t('auth.couldNotComplete')}
+          {getFriendlyMessage()}
         </p>
-        {error && (
+        {error && error !== 'session_exchange_failed' && error !== 'missing_code' && (
           <p className="mb-1 rounded-lg bg-[#14141d] px-3 py-2 text-xs text-red-400">
             {error}
           </p>
-        )}
-        {errorDescription && (
-          <p className="mb-4 text-xs text-[#6a6865]">{errorDescription}</p>
         )}
         <div className="mt-6 space-y-2">
           <Link
