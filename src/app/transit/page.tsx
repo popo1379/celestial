@@ -46,5 +46,10 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <TransitView />
+  return (
+    <>
+      <h1 className="sr-only">Daily Transit Horoscope — Today's Astrology Score & Lucky Omens | Horoscope SERO</h1>
+      <TransitView />
+    </>
+  )
 }

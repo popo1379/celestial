@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import type { Root, Element } from 'hast'
 import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -14,6 +15,36 @@ import {
 } from '@/lib/blog'
 import BlogShareBar from '@/components/blog/BlogShareBar'
 import BlogJsonLd from '@/components/blog/BlogJsonLd'
+
+// Internal route prefixes that need the basePath prepended when rendered as raw href
+const INTERNAL_PREFIXES = ['/chart', '/synastry', '/transit', '/blog', '/ai-chat', '/profile', '/about', '/privacy', '/terms', '/auth']
+
+function rehypeInternalLinks() {
+  return (tree: Root) => {
+    const visit = (node: Element) => {
+      if (node.tagName === 'a' && node.properties?.href) {
+        const href = String(node.properties.href)
+        // Only rewrite root-relative internal links (skip external, mailto, anchors, already-prefixed)
+        if (href.startsWith('/') && !href.startsWith('//')) {
+          const isInternal = INTERNAL_PREFIXES.some(
+            (p) => href === p || href.startsWith(p + '/') || href.startsWith(p + '?')
+          )
+          if (isInternal) {
+            node.properties.href = `/horoscope${href}`
+          }
+        }
+      }
+      if (node.children) {
+        for (const child of node.children) {
+          if (child.type === 'element') visit(child as Element)
+        }
+      }
+    }
+    for (const child of tree.children) {
+      if (child.type === 'element') visit(child as Element)
+    }
+  }
+}
 
 export const dynamic = 'force-static'
 export const dynamicParams = false
@@ -36,7 +67,8 @@ export function generateMetadata({ params, searchParams }: PageProps): Metadata 
   if (!post) return {}
 
   const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://opensero.com/horoscope').replace(/\/+$/, '')
-  const url = `${appUrl}/blog/${post.slug}${post.locale === 'zh' ? '?lang=zh' : ''}`
+  const isZhLocale = post.locale === 'zh'
+  const url = `${appUrl}/blog/${post.slug}${isZhLocale ? '?lang=zh' : ''}`
   const altEn = `${appUrl}/blog/${post.slug}`
   const altZh = `${appUrl}/blog/${post.slug}?lang=zh`
 
@@ -47,8 +79,9 @@ export function generateMetadata({ params, searchParams }: PageProps): Metadata 
     alternates: {
       canonical: url,
       languages: {
-        en: altEn,
-        zh: altZh,
+        'en': altEn,
+        'zh': altZh,
+        'x-default': altEn,
       },
     },
     openGraph: {

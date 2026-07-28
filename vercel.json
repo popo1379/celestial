@@ -4,6 +4,17 @@
       "source": "/",
       "destination": "/horoscope",
       "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.opensero.com"
+        }
+      ],
+      "destination": "https://opensero.com/$1",
+      "permanent": true
     }
   ]
 }
