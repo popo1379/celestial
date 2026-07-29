@@ -76,11 +76,14 @@ export const metadata: Metadata = {
     icon: [
       { url: `${basePath}/favicon-96x96.png`, sizes: '96x96', type: 'image/png' },
       { url: `${basePath}/favicon-48x48.png`, sizes: '48x48', type: 'image/png' },
-      { url: `${basePath}/favicon.ico`, sizes: '16x16', type: 'image/x-icon' },
+      { url: `${basePath}/favicon.ico`, sizes: 'any', type: 'image/x-icon' },
       { url: `${basePath}/favicon.svg`, sizes: 'any', type: 'image/svg+xml' },
     ],
-    shortcut: `${basePath}/favicon-96x96.png`,
-    apple: `${basePath}/favicon.svg`,
+    shortcut: `${basePath}/favicon.ico`,
+    apple: `${basePath}/favicon-192x192.png`,
+    other: [
+      { rel: 'mask-icon', url: `${basePath}/favicon.svg`, color: '#c9a96e' },
+    ],
   },
   manifest: `${basePath}/site.webmanifest`,
   openGraph: {
