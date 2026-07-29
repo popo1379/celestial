@@ -14,6 +14,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/transit', priority: 0.9, changeFrequency: 'daily' },
     { path: '/ai-chat', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/blog', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/blog/sun-moon-rising-signs', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/blog/how-to-find-sun-moon-rising', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/blog/sun-moon-rising-meaning', priority: 0.6, changeFrequency: 'monthly' },
+    { path: '/blog/sun-moon-rising-personality-triangle', priority: 0.6, changeFrequency: 'monthly' },
   ]
 
   const staticEntries: MetadataRoute.Sitemap = routes.map((route) => ({

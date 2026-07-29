@@ -5,13 +5,15 @@ const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://opensero.com/horosco
 const ogImage = `${appUrl}/og-image.png`
 
 export const metadata: Metadata = {
-  title: 'Horoscope SERO — Free Birth Chart & AI Astrology Reading',
+  title: 'Sun Moon Rising Sign Calculator | Big Three Astrology',
   description:
-    'Generate your free natal chart in seconds. Explore daily transits, synastry compatibility, and AI-powered astrology interpretations. Western astrology with 10 planets, houses, and major aspects — no signup required.',
+    'Discover your Sun, Moon, and Rising signs in seconds. Free Big Three astrology chart with precise planet positions, daily transits, synastry compatibility, and AI-powered interpretations. No signup required.',
   keywords: [
     'sun moon and rising',
     'sun moon rising sign',
     'big three astrology',
+    'what is my sun moon and rising',
+    'sun sign moon sign rising sign calculator',
     'free birth chart',
     'natal chart',
     'AI astrology',
@@ -29,19 +31,19 @@ export const metadata: Metadata = {
     canonical: appUrl,
   },
   openGraph: {
-    title: 'Horoscope SERO — Free Birth Chart & AI Astrology Reading',
+    title: 'Sun Moon Rising Sign Calculator | Big Three Astrology',
     description:
-      'Generate your free natal chart, explore daily transits, compare synastry compatibility, and get AI-powered astrology interpretations.',
+      'Discover your Sun, Moon, and Rising signs in seconds. Free Big Three astrology chart with precise planet positions, transits, and AI interpretations.',
     url: appUrl,
     type: 'website',
     locale: 'en_US',
-    images: [{ url: ogImage, width: 1200, height: 630, alt: 'Horoscope SERO — Free Birth Chart & AI Astrology' }],
+    images: [{ url: ogImage, width: 1200, height: 630, alt: 'Sun Moon Rising Sign Calculator — Big Three Astrology' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Horoscope SERO — Free Birth Chart & AI Astrology Reading',
+    title: 'Sun Moon Rising Sign Calculator | Big Three Astrology',
     description:
-      'Free natal chart generator, daily transits, synastry compatibility, and AI-powered astrology interpretations.',
+      'Discover your Sun, Moon, and Rising signs. Free Big Three astrology chart with daily transits and AI interpretations.',
     images: [ogImage],
   },
 }
@@ -49,15 +51,15 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Horoscope SERO — Free Birth Chart & AI Astrology Reading</h1>
+      <h1 className="sr-only">Sun Moon Rising Sign Calculator — Big Three Astrology</h1>
       <HomeView />
       <section className="relative z-10 mx-auto max-w-4xl px-4 pb-16 pt-8 text-sm text-[#8a8885]">
         <div className="rounded-2xl border border-[#1e1e2a] bg-[#0f0f15]/80 p-6 sm:p-8">
-          <h2 className="mb-4 font-serif text-xl font-semibold text-[#e8e6e3]">Free Birth Chart & Astrology Tools</h2>
+          <h2 className="mb-4 font-serif text-xl font-semibold text-[#e8e6e3]">Sun Moon Rising Sign Calculator</h2>
           <p className="mb-4 leading-relaxed">
+            Discover your Sun, Moon, and Rising signs — the Big Three that form the foundation of your astrological identity.
             Horoscope SERO is a free online astrology platform designed to help you explore the cosmos within you.
             Generate your personalized natal chart in seconds using precise Swiss Ephemeris calculations.
-            Discover your Sun sign, Moon sign, and Rising sign — the Big Three that form the foundation of your astrological identity.
             Whether you are a beginner curious about astrology or an experienced seeker looking for deep insights,
             our tools provide accurate planet positions, house cusps, aspects, and element distributions.
           </p>
@@ -65,12 +67,15 @@ export default function Page() {
             Your birth chart is a celestial snapshot of the sky at the moment you were born.
             It reveals your core personality through the Sun sign, your emotional nature through the Moon sign,
             and your outward demeanor through the Rising sign (Ascendant).
-            Beyond the Big Three, we calculate the positions of all ten planets — Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, and Pluto —
-            across the twelve astrological houses, showing how different areas of your life are influenced by planetary energies.
+            The Sun represents your core identity and ego — who you are at your essence.
+            The Moon governs your emotions, instincts, and subconscious reactions.
+            The Rising sign is the mask you wear when meeting the world, shaping first impressions and your approach to new situations.
+            Together, these three placements create the personality triangle that influences how you think, feel, and act.
           </p>
           <h3 className="mb-2 mt-6 font-serif text-lg font-semibold text-[#e8e6e3]">What You Can Do Here</h3>
           <ul className="mb-4 list-disc space-y-1 pl-5 leading-relaxed">
-            <li>Generate a free natal chart with your Sun, Moon, and Rising sign</li>
+            <li>Calculate your Sun, Moon, and Rising signs in seconds</li>
+            <li>Generate a free natal chart with precise planet positions</li>
             <li>Explore daily transit horoscopes personalized to your birth chart</li>
             <li>Compare synastry compatibility between two charts</li>
             <li>Get AI-powered astrology interpretations and insights</li>
@@ -78,15 +83,15 @@ export default function Page() {
           </ul>
           <h3 className="mb-2 mt-6 font-serif text-lg font-semibold text-[#e8e6e3]">Understanding Your Big Three</h3>
           <p className="mb-4 leading-relaxed">
-            The Sun represents your core identity and ego — who you are at your essence.
-            The Moon governs your emotions, instincts, and subconscious reactions.
-            The Rising sign (Ascendant) is the mask you wear when meeting the world, shaping first impressions and your approach to new situations.
-            Together, these three placements create the personality triangle that influences how you think, feel, and act.
-            Understanding this dynamic helps you navigate relationships, career choices, and personal growth with greater clarity.
+            The <strong className="text-[#c9a96e]">Sun sign</strong> represents your core identity and ego — who you are at your essence.
+            The <strong className="text-[#c9a96e]">Moon sign</strong> governs your emotions, instincts, and inner world — how you react and what makes you feel secure.
+            The <strong className="text-[#c9a96e]">Rising sign</strong> (Ascendant) is the lens through which the world sees you — it shapes your appearance, first impressions, and approach to new situations.
+            Beyond the Big Three, we calculate the positions of all ten planets — Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, and Pluto —
+            across the twelve astrological houses, showing how different areas of your life are influenced by planetary energies.
           </p>
           <p className="leading-relaxed">
             Start your astrological journey today — no signup required.
-            Simply enter your birth date, time, and location to generate your free birth chart and uncover the secrets written in the stars.
+            Simply enter your birth date, time, and location to calculate your Sun, Moon, and Rising signs and uncover the secrets written in the stars.
           </p>
         </div>
       </section>

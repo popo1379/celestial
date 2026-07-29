@@ -250,6 +250,8 @@ export const translations: Record<Locale, Dict> = {
     'auth.sending': 'Sending...',
     'auth.authFailed': 'Authentication Failed',
     'auth.couldNotComplete': "We couldn't complete your sign-in.",
+    'auth.errorExpiredSession': 'Login session expired. Please request a new verification email.',
+    'auth.errorInvalidLink': 'The verification link is invalid or has already been used. Please try again.',
     'auth.backToSignin': 'Back to Sign In',
     'auth.returnHome': 'Return Home',
 
