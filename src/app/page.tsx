@@ -5,10 +5,11 @@ const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://opensero.com/horosco
 const ogImage = `${appUrl}/og-image.png`
 
 export const metadata: Metadata = {
-  title: 'Sun Moon Rising Sign Calculator | Big Three Astrology',
+  title: 'Horoscope SERO — Sun Moon Rising Sign Calculator',
   description:
-    'Discover your Sun, Moon, and Rising signs in seconds. Free Big Three astrology chart with precise planet positions, daily transits, synastry compatibility, and AI-powered interpretations. No signup required.',
+    'Horoscope SERO: Discover your Sun, Moon, and Rising signs in seconds. Free Big Three astrology chart with precise planet positions, daily transits, synastry compatibility, and AI-powered interpretations. No signup required.',
   keywords: [
+    'Horoscope SERO',
     'sun moon and rising',
     'sun moon rising sign',
     'big three astrology',
@@ -31,17 +32,18 @@ export const metadata: Metadata = {
     canonical: appUrl,
   },
   openGraph: {
-    title: 'Sun Moon Rising Sign Calculator | Big Three Astrology',
+    title: 'Horoscope SERO — Sun Moon Rising Sign Calculator',
     description:
       'Discover your Sun, Moon, and Rising signs in seconds. Free Big Three astrology chart with precise planet positions, transits, and AI interpretations.',
     url: appUrl,
     type: 'website',
     locale: 'en_US',
-    images: [{ url: ogImage, width: 1200, height: 630, alt: 'Sun Moon Rising Sign Calculator — Big Three Astrology' }],
+    siteName: 'Horoscope SERO',
+    images: [{ url: ogImage, width: 1200, height: 630, alt: 'Horoscope SERO — Sun Moon Rising Sign Calculator' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sun Moon Rising Sign Calculator | Big Three Astrology',
+    title: 'Horoscope SERO — Sun Moon Rising Sign Calculator',
     description:
       'Discover your Sun, Moon, and Rising signs. Free Big Three astrology chart with daily transits and AI interpretations.',
     images: [ogImage],
@@ -51,14 +53,14 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Sun Moon Rising Sign Calculator — Big Three Astrology</h1>
+      <h2 className="sr-only">Horoscope SERO — Sun Moon Rising Sign Calculator</h2>
       <HomeView />
       <section className="relative z-10 mx-auto max-w-4xl px-4 pb-16 pt-8 text-sm text-[#8a8885]">
         <div className="rounded-2xl border border-[#1e1e2a] bg-[#0f0f15]/80 p-6 sm:p-8">
-          <h2 className="mb-4 font-serif text-xl font-semibold text-[#e8e6e3]">Sun Moon Rising Sign Calculator</h2>
+          <h2 className="mb-4 font-serif text-xl font-semibold text-[#e8e6e3]">Horoscope SERO — Sun Moon Rising Sign Calculator</h2>
           <p className="mb-4 leading-relaxed">
+            <strong className="text-[#c9a96e]">Horoscope SERO</strong> (opensero.com/horoscope) is a free online astrology platform designed to help you explore the cosmos within you.
             Discover your Sun, Moon, and Rising signs — the Big Three that form the foundation of your astrological identity.
-            Horoscope SERO is a free online astrology platform designed to help you explore the cosmos within you.
             Generate your personalized natal chart in seconds using precise Swiss Ephemeris calculations.
             Whether you are a beginner curious about astrology or an experienced seeker looking for deep insights,
             our tools provide accurate planet positions, house cusps, aspects, and element distributions.

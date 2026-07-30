@@ -47,13 +47,13 @@ export function MobileTopBar() {
             <span className="text-xl">☰</span>
           </button>
 
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2" aria-label="Horoscope SERO — Sun Moon Rising Sign Calculator">
             <span className="text-lg">✦</span>
             <span
               className="font-serif text-sm font-bold tracking-wide text-[#e8e6e3]"
               style={{ fontVariant: 'small-caps' }}
             >
-              Horoscope
+              Horoscope SERO
             </span>
           </Link>
 

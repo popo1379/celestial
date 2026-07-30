@@ -31,7 +31,7 @@ export default function DesktopNav() {
     <nav className="fixed top-0 left-0 right-0 z-50 hidden md:block">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5">
+        <Link href="/" className="flex items-center gap-2.5" aria-label="Horoscope SERO — Sun Moon Rising Sign Calculator">
           <span className="text-xl">✦</span>
           <span
             className="font-serif text-lg font-bold tracking-wide text-[#e8e6e3]"

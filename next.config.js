@@ -32,6 +32,11 @@ const nextConfig = {
         key: 'X-DNS-Prefetch-Control',
         value: 'on',
       },
+      // Explicitly allow search engines to index and follow all pages
+      {
+        key: 'X-Robots-Tag',
+        value: 'index, follow',
+      },
     ]
     return [
       {

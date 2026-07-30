@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "indexnow:dry-run": "npx --yes tsx src/scripts/indexnow-submit.ts --dry",
+    "indexnow:submit": "npx --yes tsx src/scripts/indexnow-submit.ts",
+    "indexnow:submit:postbuild": "npm run build && npx --yes tsx src/scripts/indexnow-submit.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",

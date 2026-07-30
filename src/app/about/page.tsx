@@ -3,8 +3,11 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'About — Horoscope SERO | Free Birth Chart & Sun Moon Rising',
   description:
-    'Learn about Horoscope SERO — your gateway to understanding the cosmos within and around you. Free birth chart, sun moon and rising, AI-powered astrology interpretations.',
+    'Learn about Horoscope SERO (opensero.com) — your gateway to understanding the cosmos within and around you. Free birth chart, sun moon and rising, AI-powered astrology interpretations.',
   keywords: [
+    'Horoscope SERO',
+    'opensero',
+    'opensero.com',
     'sun moon and rising',
     'big three astrology',
     'free birth chart',
@@ -13,6 +16,9 @@ export const metadata: Metadata = {
     'AI astrology',
     'horoscope',
   ],
+  alternates: {
+    canonical: `${(process.env.NEXT_PUBLIC_APP_URL || 'https://opensero.com/horoscope').replace(/\/+$/, '')}/about`,
+  },
   openGraph: {
     title: 'About — Horoscope SERO | Free Birth Chart & Sun Moon Rising',
     description:
@@ -34,7 +40,7 @@ function t(key: string, locale: string): string {
     'about.title': 'About Horoscope SERO',
     'about.subtitle': 'Your gateway to understanding the cosmos within and around you.',
     'about.story.title': 'Our Story',
-    'about.story.content': 'Horoscope SERO was born from a simple idea: that the ancient wisdom of astrology should be accessible to everyone, beautifully presented, and powered by modern technology.\n\nWe believe that your birth chart is a map of your cosmic potential — a tool for self-reflection, growth, and understanding. Our mission is to help you decode that map with clarity and depth.',
+    'about.story.content': 'Horoscope SERO (opensero.com/horoscope) was born from a simple idea: that the ancient wisdom of astrology should be accessible to everyone, beautifully presented, and powered by modern technology.\n\nWe believe that your birth chart is a map of your cosmic potential — a tool for self-reflection, growth, and understanding. Our mission is to help you decode that map with clarity and depth.',
     'about.philosophy.title': 'Our Philosophy',
     'about.philosophy.content': 'Astrology is not about predestination — it is about potential. The stars do not dictate your fate, but they reveal patterns, energies, and opportunities that you can work with consciously.\n\nWe approach astrology with respect for its traditional roots and a modern, psychological perspective. Our tools are designed to empower you, not to limit you.',
     'about.features.title': 'What We Offer',
@@ -47,7 +53,7 @@ function t(key: string, locale: string): string {
     'about.features.synastry.title': 'Synastry',
     'about.features.synastry.desc': 'Relationship compatibility analysis between two charts',
     'about.tech.title': 'Our Approach',
-    'about.tech.content': 'We use the Whole Sign house system, one of the oldest and most traditional house systems in Western astrology. Our calculations include all 10 major Horoscope SERO bodies (Sun through Pluto) and the major aspects (conjunction, sextile, square, trine, opposition).\n\nOur AI interpretation feature combines your chart data with advanced language models to provide nuanced, context-aware insights tailored to you.',
+    'about.tech.content': 'We use the Whole Sign house system, one of the oldest and most traditional house systems in Western astrology. Our calculations include all 10 major celestial bodies (Sun through Pluto) and the major aspects (conjunction, sextile, square, trine, opposition).\n\nOur AI interpretation feature combines your chart data with advanced language models to provide nuanced, context-aware insights tailored to you.',
     'about.disclaimer.title': 'Disclaimer',
     'about.disclaimer.content': 'Horoscope SERO provides astrological information for entertainment and self-reflection purposes only. It is not a substitute for professional advice. Always consult with qualified professionals for medical, legal, financial, or psychological matters.',
   }
@@ -56,7 +62,7 @@ function t(key: string, locale: string): string {
     'about.title': '关于 Horoscope SERO',
     'about.subtitle': '理解你内在和周围宇宙的门户。',
     'about.story.title': '我们的故事',
-    'about.story.content': 'Horoscope SERO 诞生于一个简单的想法：占星学这门古老的智慧应该让每个人都能接触到，以精美的方式呈现，并由现代技术驱动。\n\n我们相信，你的出生星盘是你宇宙潜能的地图——一个用于自我反思、成长和理解的工具。我们的使命是帮助你清晰而深入地解读这张地图。',
+    'about.story.content': 'Horoscope SERO (opensero.com/horoscope) 诞生于一个简单的想法：占星学这门古老的智慧应该让每个人都能接触到，以精美的方式呈现，并由现代技术驱动。\n\n我们相信，你的出生星盘是你宇宙潜能的地图——一个用于自我反思、成长和理解的工具。我们的使命是帮助你清晰而深入地解读这张地图。',
     'about.philosophy.title': '我们的理念',
     'about.philosophy.content': '占星学不是关于宿命论——而是关于潜能。星辰并不决定你的命运，但它们揭示了你可以有意识地与之合作的模式、能量和机遇。\n\n我们以尊重传统根源和现代心理学视角的态度来对待占星学。我们的工具旨在赋予你力量，而不是限制你。',
     'about.features.title': '我们提供什么',

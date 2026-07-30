@@ -76,7 +76,7 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
-      <h1 className="sr-only">Your Sun, Moon & Rising Sign — Big Three Astrology Chart</h1>
+      <h2 className="sr-only">Horoscope SERO — Your Sun, Moon & Rising Sign Chart</h2>
       <ChartView />
       <section className="relative z-10 mx-auto max-w-4xl px-4 pb-16 pt-8 text-sm text-[#8a8885]">
         <div className="rounded-2xl border border-[#1e1e2a] bg-[#0f0f15]/80 p-6 sm:p-8">
@@ -85,7 +85,7 @@ export default function Page() {
             This is your personalized Sun, Moon, and Rising sign chart — the Big Three that form the foundation of your astrological identity.
             A natal chart (birth chart) is a map of where all the planets were in their journey around the Sun at the exact moment you were born.
             This celestial snapshot reveals your unique astrological fingerprint — a cosmic blueprint that influences your personality, relationships, career path, and life purpose.
-            At Horoscope SERO, we use precise Swiss Ephemeris algorithms to calculate accurate planet positions, house cusps, and aspects for your free birth chart.
+            At <strong className="text-[#c9a96e]">Horoscope SERO</strong> (opensero.com/horoscope), we use precise Swiss Ephemeris algorithms to calculate accurate planet positions, house cusps, and aspects for your free birth chart.
           </p>
           <h3 className="mb-2 mt-6 font-serif text-lg font-semibold text-[#e8e6e3]">The Big Three: Sun, Moon, and Rising</h3>
           <p className="mb-4 leading-relaxed">
