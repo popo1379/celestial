@@ -65,13 +65,29 @@ async function submitBatch(
   endpoint: string,
   payload: { host: string; key: string; keyLocation: string; urlList: string[] },
 ) {
-  const res = await fetch(endpoint, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json; charset=utf-8' },
-    body: JSON.stringify(payload),
-  })
-  const body = await res.text()
-  return { endpoint, ok: res.ok, status: res.status, body: body.slice(0, 500) }
+  // 5s timeout per endpoint to stay within Vercel's 10s function limit
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), 5000)
+  try {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    })
+    const body = await res.text()
+    return { endpoint, ok: res.ok, status: res.status, body: body.slice(0, 500) }
+  } catch (err) {
+    const isTimeout = err instanceof Error && err.name === 'AbortError'
+    return {
+      endpoint,
+      ok: false,
+      status: 0,
+      body: isTimeout ? 'Request timed out after 5s' : String(err),
+    }
+  } finally {
+    clearTimeout(timeout)
+  }
 }
 
 export async function POST(req: NextRequest) {
