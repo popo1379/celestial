@@ -3,19 +3,17 @@
 import Link from 'next/link'
 import { useState, useMemo } from 'react'
 import { useTranslation } from '@/hooks/useTranslation'
-import type { BlogPostMeta, BlogLocale } from '@/lib/blog'
+import type { BlogPostMeta } from '@/lib/blog'
 
 interface Props {
   enPosts: BlogPostMeta[]
-  zhPosts: BlogPostMeta[]
 }
 
-export default function BlogListClient({ enPosts, zhPosts }: Props) {
-  const { t, locale } = useTranslation()
+export default function BlogListClient({ enPosts }: Props) {
+  const { t } = useTranslation()
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
 
-  const posts = (locale === 'zh' ? zhPosts : enPosts) as BlogPostMeta[]
-  const blogLocale: BlogLocale = locale === 'zh' ? 'zh' : 'en'
+  const posts = enPosts
 
   const categories = useMemo(
     () => Array.from(new Set(posts.map((p) => p.category))),
@@ -28,7 +26,7 @@ export default function BlogListClient({ enPosts, zhPosts }: Props) {
 
   const formatDate = (date: string) => {
     try {
-      return new Intl.DateTimeFormat(blogLocale === 'zh' ? 'zh-CN' : 'en-US', {
+      return new Intl.DateTimeFormat('en-US', {
         year: 'numeric',
         month: 'short',
         day: 'numeric',
@@ -38,8 +36,7 @@ export default function BlogListClient({ enPosts, zhPosts }: Props) {
     }
   }
 
-  const linkFor = (slug: string) =>
-    blogLocale === 'zh' ? `/blog/${slug}?lang=zh` : `/blog/${slug}`
+  const linkFor = (slug: string) => `/blog/${slug}`
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-12 md:py-20">

@@ -20,11 +20,6 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: '/blog',
-    languages: {
-      'en': '/blog',
-      'zh': '/blog?lang=zh',
-      'x-default': '/blog',
-    },
   },
   openGraph: {
     title: 'Astrology Blog — Free Birth Chart, Sun Moon Rising & More | Horoscope SERO',
@@ -36,9 +31,7 @@ export const metadata: Metadata = {
 }
 
 export default function BlogPage() {
-  // Pre-fetch both locale lists server-side; client decides which to show
   const enPosts = listPosts('en')
-  const zhPosts = listPosts('zh')
 
-  return <BlogListClient enPosts={enPosts} zhPosts={zhPosts} />
+  return <BlogListClient enPosts={enPosts} />
 }

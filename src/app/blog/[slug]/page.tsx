@@ -10,8 +10,6 @@ import {
   getPost,
   getAllSlugs,
   getAdjacentPosts,
-  resolveLocale,
-  type BlogLocale,
 } from '@/lib/blog'
 import BlogShareBar from '@/components/blog/BlogShareBar'
 import BlogJsonLd from '@/components/blog/BlogJsonLd'
@@ -51,26 +49,18 @@ export const dynamicParams = false
 
 interface PageProps {
   params: { slug: string }
-  searchParams: { lang?: string }
 }
 
 export function generateStaticParams() {
   return getAllSlugs()
 }
 
-export function generateMetadata({ params, searchParams }: PageProps): Metadata {
-  const requestedLocale = resolveLocale(searchParams.lang)
-  let post = getPost(params.slug, requestedLocale)
-  if (!post && requestedLocale !== 'en') {
-    post = getPost(params.slug, 'en')
-  }
+export function generateMetadata({ params }: PageProps): Metadata {
+  const post = getPost(params.slug, 'en')
   if (!post) return {}
 
   const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://opensero.com/horoscope').replace(/\/+$/, '')
-  const isZhLocale = post.locale === 'zh'
-  const url = `${appUrl}/blog/${post.slug}${isZhLocale ? '?lang=zh' : ''}`
-  const altEn = `${appUrl}/blog/${post.slug}`
-  const altZh = `${appUrl}/blog/${post.slug}?lang=zh`
+  const url = `${appUrl}/blog/${post.slug}`
 
   return {
     title: `${post.title} — Horoscope SERO`,
@@ -78,11 +68,6 @@ export function generateMetadata({ params, searchParams }: PageProps): Metadata 
     keywords: post.tags,
     alternates: {
       canonical: url,
-      languages: {
-        'en': altEn,
-        'zh': altZh,
-        'x-default': altEn,
-      },
     },
     openGraph: {
       title: post.title,
@@ -102,30 +87,19 @@ export function generateMetadata({ params, searchParams }: PageProps): Metadata 
   }
 }
 
-export default function BlogPostPage({ params, searchParams }: PageProps) {
-  const requestedLocale: BlogLocale = resolveLocale(searchParams.lang)
-  let post = getPost(params.slug, requestedLocale)
-
-  // Fallback to English if the requested locale version is missing
-  if (!post && requestedLocale !== 'en') {
-    post = getPost(params.slug, 'en')
-  }
+export default function BlogPostPage({ params }: PageProps) {
+  const post = getPost(params.slug, 'en')
   if (!post) notFound()
 
   const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://opensero.com/horoscope').replace(/\/+$/, '')
-  // Use the post's actual locale for adjacent nav (handles fallback case)
-  const { prev, next } = getAdjacentPosts(post.slug, post.locale)
-  const isZh = post.locale === 'zh'
+  const { prev, next } = getAdjacentPosts(post.slug, 'en')
 
   const formatDate = (date: string) =>
-    new Intl.DateTimeFormat(isZh ? 'zh-CN' : 'en-US', {
+    new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
     }).format(new Date(date))
-
-  const otherLocaleHref = isZh ? `/blog/${post.slug}` : `/blog/${post.slug}?lang=zh`
-  const otherLocaleLabel = isZh ? 'English' : '中文'
 
   return (
     <article className="mx-auto max-w-3xl px-6 py-12 md:py-20">
@@ -133,10 +107,10 @@ export default function BlogPostPage({ params, searchParams }: PageProps) {
 
       {/* Back link */}
       <Link
-        href={`/blog${isZh ? '?lang=zh' : ''}`}
+        href="/blog"
         className="inline-flex items-center text-xs text-[#6a6865] transition-colors hover:text-[#c9a96e]"
       >
-        ← {isZh ? '返回博客' : 'Back to blog'}
+        ← Back to blog
       </Link>
 
       {/* Header */}
@@ -146,7 +120,7 @@ export default function BlogPostPage({ params, searchParams }: PageProps) {
             {post.category}
           </span>
           <span className="text-[#5a5a65]">·</span>
-          <span className="text-[#6a6865]">{post.readingMinutes} {isZh ? '分钟阅读' : 'min read'}</span>
+          <span className="text-[#6a6865]">{post.readingMinutes} min read</span>
         </div>
 
         <h1 className="mt-4 font-serif text-3xl md:text-4xl font-bold leading-tight text-[#e8e6e3]">
@@ -157,7 +131,7 @@ export default function BlogPostPage({ params, searchParams }: PageProps) {
           {post.description}
         </p>
 
-        <div className="mt-6 flex items-center justify-between border-t border-[#1e1e2a] pt-4">
+        <div className="mt-6 flex items-center border-t border-[#1e1e2a] pt-4">
           <div className="flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#1e1e2a] text-xs font-bold text-[#c9a96e]">
               {post.author.charAt(0)}
@@ -167,18 +141,11 @@ export default function BlogPostPage({ params, searchParams }: PageProps) {
               <div className="text-[#5a5a65]">
                 {formatDate(post.date)}
                 {post.updated && post.updated !== post.date && (
-                  <span className="ml-2 italic">· {isZh ? '更新于' : 'updated'} {formatDate(post.updated)}</span>
+                  <span className="ml-2 italic">· updated {formatDate(post.updated)}</span>
                 )}
               </div>
             </div>
           </div>
-
-          <Link
-            href={otherLocaleHref}
-            className="rounded-md border border-[#1e1e2a] px-2.5 py-1 text-[10px] text-[#a8a6a3] transition-colors hover:border-[#c9a96e]/40 hover:text-[#c9a96e]"
-          >
-            {otherLocaleLabel}
-          </Link>
         </div>
       </header>
 
@@ -214,9 +181,8 @@ export default function BlogPostPage({ params, searchParams }: PageProps) {
 
       {/* Share */}
       <BlogShareBar
-        url={`${appUrl}/blog/${post.slug}${isZh ? '?lang=zh' : ''}`}
+        url={`${appUrl}/blog/${post.slug}`}
         title={post.title}
-        isZh={isZh}
       />
 
       {/* Prev / Next */}
@@ -224,11 +190,11 @@ export default function BlogPostPage({ params, searchParams }: PageProps) {
         <nav className="mt-12 grid gap-4 sm:grid-cols-2">
           {prev ? (
             <Link
-              href={`/blog/${prev.slug}${isZh ? '?lang=zh' : ''}`}
+              href={`/blog/${prev.slug}`}
               className="group rounded-xl border border-[#1e1e2a] bg-[#0f0f15] p-5 transition-colors hover:border-[#c9a96e]/40"
             >
               <div className="text-[10px] uppercase tracking-wider text-[#5a5a65]">
-                ← {isZh ? '上一篇' : 'Previous'}
+                ← Previous
               </div>
               <div className="mt-1 text-sm font-medium text-[#e8e6e3] group-hover:text-[#c9a96e]">
                 {prev.title}
@@ -239,11 +205,11 @@ export default function BlogPostPage({ params, searchParams }: PageProps) {
           )}
           {next ? (
             <Link
-              href={`/blog/${next.slug}${isZh ? '?lang=zh' : ''}`}
+              href={`/blog/${next.slug}`}
               className="group rounded-xl border border-[#1e1e2a] bg-[#0f0f15] p-5 text-right transition-colors hover:border-[#c9a96e]/40"
             >
               <div className="text-[10px] uppercase tracking-wider text-[#5a5a65]">
-                {isZh ? '下一篇' : 'Next'} →
+                Next →
               </div>
               <div className="mt-1 text-sm font-medium text-[#e8e6e3] group-hover:text-[#c9a96e]">
                 {next.title}
@@ -258,18 +224,16 @@ export default function BlogPostPage({ params, searchParams }: PageProps) {
       {/* CTA */}
       <div className="mt-16 rounded-2xl border border-[#c9a96e]/20 bg-gradient-to-br from-[#14141d] to-[#0f0f15] p-8 text-center">
         <h3 className="font-serif text-xl font-semibold text-[#e8e6e3]">
-          {isZh ? '探索你自己的星盘' : 'Explore your own chart'}
+          Explore your own chart
         </h3>
         <p className="mx-auto mt-2 max-w-md text-xs leading-relaxed text-[#a8a6a3]">
-          {isZh
-            ? '把理论付诸实践——免费生成本命盘，查看 10 颗行星、12 个宫位和主要相位。'
-            : 'Put theory into practice — generate your free natal chart with 10 planets, 12 houses, and major aspects.'}
+          Put theory into practice — generate your free natal chart with 10 planets, 12 houses, and major aspects.
         </p>
         <Link
           href="/chart"
           className="mt-4 inline-block rounded-lg bg-[#c9a96e] px-5 py-2 text-sm font-medium text-[#0a0a0f] transition-colors hover:bg-[#b8964f]"
         >
-          {isZh ? '生成本命盘' : 'Generate my chart'}
+          Generate my chart
         </Link>
       </div>
     </article>

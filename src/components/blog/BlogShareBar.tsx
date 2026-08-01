@@ -1,10 +1,9 @@
 interface Props {
   url: string
   title: string
-  isZh: boolean
 }
 
-export default function BlogShareBar({ url, title, isZh }: Props) {
+export default function BlogShareBar({ url, title }: Props) {
   const encodedUrl = encodeURIComponent(url)
   const encodedTitle = encodeURIComponent(title)
 
@@ -35,7 +34,7 @@ export default function BlogShareBar({ url, title, isZh }: Props) {
   return (
     <div className="mt-8 flex items-center justify-between border-t border-[#1e1e2a] pt-6">
       <span className="text-xs text-[#6a6865]">
-        {isZh ? '分享文章' : 'Share this post'}
+        Share this post
       </span>
       <div className="flex items-center gap-3">
         {links.map((link) => (

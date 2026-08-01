@@ -27,20 +27,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route.priority,
   }))
 
-  // Blog post entries with en/zh hreflang alternates
+  // Blog post entries — English only (zh version removed from public routing)
   const blogPosts = listPosts('en')
   const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: new Date(post.updated || post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
-    alternates: {
-      languages: {
-        en: `${baseUrl}/blog/${post.slug}`,
-        'zh': `${baseUrl}/blog/${post.slug}?lang=zh`,
-        'x-default': `${baseUrl}/blog/${post.slug}`,
-      },
-    },
   }))
 
   return [...staticEntries, ...blogEntries]

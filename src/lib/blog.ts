@@ -31,7 +31,10 @@ export interface BlogPost extends BlogPostMeta {
 }
 
 const BLOG_DIR = path.join(process.cwd(), 'src', 'content', 'blog')
-const LOCALES: BlogLocale[] = ['en', 'zh']
+// SEO: Chinese version has been removed from public routing to eliminate
+// hreflang/canonical conflicts. Only English is exposed; zh MDX files are
+// retained on disk for potential future restoration.
+const LOCALES: BlogLocale[] = ['en']
 
 function ensureDir(dir: string) {
   if (!fs.existsSync(dir)) {

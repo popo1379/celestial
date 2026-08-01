@@ -9,7 +9,7 @@ interface Props {
  * Emits Article + FAQPage JSON-LD structured data for SEO.
  */
 export default function BlogJsonLd({ post, appUrl }: Props) {
-  const url = `${appUrl}/blog/${post.slug}${post.locale === 'zh' ? '?lang=zh' : ''}`
+  const url = `${appUrl}/blog/${post.slug}`
 
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -36,7 +36,7 @@ export default function BlogJsonLd({ post, appUrl }: Props) {
       '@id': url,
     },
     keywords: post.tags.join(', '),
-    inLanguage: post.locale === 'zh' ? 'zh-CN' : 'en-US',
+    inLanguage: 'en-US',
   }
 
   const faqSchema =
